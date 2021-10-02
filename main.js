@@ -959,7 +959,6 @@ keystate = [];
 var render = function () {
 	renderer.render(scene, camera);
 	ball.update();
-	loadLevel();
 	percent = Math.ceil(
 		Math.abs(ball.mesh.position.z) / data[level].length * 100);
 	percent = percent > 100 ? 100 : percent;
