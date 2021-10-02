@@ -64,8 +64,7 @@ function move(e){
 function up(e){
   e.preventDefault();
   mouseDown = false;
-  let str = `
-[
+  let str = `[
   0xaaaaaa, 
   0xff1111, 
   0xffff00, 
