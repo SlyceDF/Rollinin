@@ -22,17 +22,17 @@ var daa = [
   0x8d46b0
 ],
 [
-  0xaaaaaa, //Background Color
-  0xff1111, //Ball Color
-  0xffff00, //Mat Color
-  0xcccc00, //Mat Outline
-  0xff9500, //Invisible Mat Outline
-  0xff00ff, //High Bouncer Color
-  0x0000ff, //Low Bouncer Color
-  0x00ffff, //Obstacle Color
-  0x00ddff, //Obstacle Outline
-  0x00ff08, //High Bouncemat Color
-  0xb7ff00  //Low Bouncemat Color
+  0xff9854, //Background Color
+  0xff6500, //Ball Color
+  0xd97a3f, //Mat Color
+  0xad6132, //Mat Outline
+  0xd9963f, //Invisible Mat Outline
+  0xff7700, //High Bouncer Color
+  0xff6a00, //Low Bouncer Color
+  0xd97a3f, //Obstacle Color
+  0xad6132, //Obstacle Outline
+  0xc95e00, //High Bouncemat Color
+  0xc45200  //Low Bouncemat Color
 ]
 ];
 var data = [
