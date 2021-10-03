@@ -176,7 +176,7 @@ class Ball {
 				if (v.detect()) gameover();
 		});
 	}
-}
+};
 class Mat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -201,7 +201,7 @@ class Mat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class DelMat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -226,7 +226,7 @@ class DelMat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Bouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -250,7 +250,7 @@ class Bouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class SlowBouncer {
 	constructor(xpos, zpos) {
@@ -275,7 +275,7 @@ class SlowBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Obstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.7, 1);
@@ -302,7 +302,7 @@ class Obstacle {
 			ball.mesh.position.y < this.mesh.position.y + 0.85
 		) return true;
 	}
-}
+};
 class HighObstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 3, 1);
@@ -329,7 +329,7 @@ class HighObstacle {
 			ball.mesh.position.y < this.mesh.position.y + 3
 		) return true;
 	}
-}
+};
 class HighlowObstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 2, 1);
@@ -356,7 +356,7 @@ class HighlowObstacle {
 			ball.mesh.position.y < this.mesh.position.y + 2
 		) return true;
 	}
-}
+};
 class MatBouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -380,7 +380,7 @@ class MatBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class MatsBouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -404,7 +404,7 @@ class MatsBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 function objectUpdate() {
 class Ball {
 	constructor() {
@@ -420,7 +420,7 @@ class Ball {
 		this.count2Lose = 0;
 		this.last = 0;
 		this.mesh.name = 'ball';
-	}
+	};
 
 	update() {
 		this.mesh.position.y += this.speed.y;
@@ -553,7 +553,7 @@ class Ball {
 				if (v.detect()) gameover();
 		});
 	}
-}
+};
 class Mat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -578,7 +578,7 @@ class Mat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class DelMat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -603,7 +603,7 @@ class DelMat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Bouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -627,7 +627,7 @@ class Bouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class MatBouncer {
 	constructor(xpos, zpos) {
@@ -652,7 +652,7 @@ class MatBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class MatsBouncer {
 	constructor(xpos, zpos) {
@@ -677,7 +677,7 @@ class MatsBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class SlowBouncer {
 	constructor(xpos, zpos) {
@@ -702,7 +702,7 @@ class SlowBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Obstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.7, 1);
@@ -729,7 +729,7 @@ class Obstacle {
 			ball.mesh.position.y < this.mesh.position.y + 0.85
 		) return true;
 	}
-}
+};
 class HighObstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 3, 1);
@@ -783,7 +783,7 @@ class HighlowObstacle {
 			ball.mesh.position.y < this.mesh.position.y + 2
 		) return true;
 	}
-}
+};
 }
 function jumper() {
       world.forEach(v => {
