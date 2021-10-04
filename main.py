@@ -30,38 +30,41 @@ def register():
   register = True
   return render_template('register.html', register=register)
 
-@app.route('/play',  methods=['POST'])
+@app.route('/play',  methods=['GET', 'POST'])
 def levelplay():
-  if (register == True):
-    uname = request.form['usernames']
-    pword = request.form['passwords']
-    rpword = request.form['rpasswords']
-    if (pword == rpword):
-      userl = Profiles.query.order_by(Profiles.idd)
-      userlast = userl[-1:]
-      try:
-        idword = userlast.idd + 1
-      except:
-        idword = 0
-      new_user = Profiles(username=uname, password=pword)
-      db.session.add(new_user)
-      db.session.commit()
-      return render_template('lvl1.html', username=uname, idd=idword)
+  if (request.method == 'POST'):
+    if (register == True):
+      uname = request.form['usernames']
+      pword = request.form['passwords']
+      rpword = request.form['rpasswords']
+      if (pword == rpword):
+        userl = Profiles.query.order_by(Profiles.idd)
+        userlast = userl[-1:]
+        try:
+          idword = userlast.idd + 1
+        except:
+          idword = 0
+        new_user = Profiles(username=uname, password=pword)
+        db.session.add(new_user)
+        db.session.commit()
+        return render_template('lvl1.html', username=uname, idd=idword)
+      else:
+        return redirect('/register', code=302)
     else:
-      return redirect('/register', code=302)
-  else:
-    if (register == False):
-      try:
-        uname = request.form['usernames']
-        iw = int(request.form['ids'])
-        pword = request.form['passwords']
-        listquery = Profiles.query.order_by(Profiles.idd)[iw]
-        if (listquery.password == pword and listquery.username == uname and not   listquery.password == None):
-          return render_template('lvl1.html', username=uname, idd=iw)
-        else:
+      if (register == False):
+        try:
+          uname = request.form['usernames']
+          iw = int(request.form['ids'])
+          pword = request.form['passwords']
+          listquery = Profiles.query.order_by(Profiles.idd)[iw]
+          if (listquery.password == pword and listquery.username == uname and not   listquery.password == None):
+            return render_template('lvl1.html', username=uname, idd=iw)
+          else:
+            return redirect('/', code=302)
+        except:
           return redirect('/', code=302)
-      except:
-        return redirect('/', code=302)
+  if (request.method == 'GET'):
+    return redirect('/', code=302)
 @app.route('/',  methods=['GET', 'POST'])
 def login():
   global register
