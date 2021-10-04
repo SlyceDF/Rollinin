@@ -7,10 +7,21 @@
     <title>Register @SkyRoll</title>
 </head>
 <body>
-    <form method="POST">
-      <input type="text" placeholder="Username" id="username"/>
-      <input type="text" placeholder="Password" id="password"/>
-      <input type="text" placeholder="Repeat Password" id="rpassword"/>
-    </form>
+  {{register}}
+        <form action='/play' method="POST">
+            <div>
+              <label for="username">Username</label>
+              <input type="text" id="uname" name="usernames" aria-describedby="emailHelp" placeholder="Enter Username">
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input type="password" id="pw" name="passwords" placeholder="Create Password">
+            </div>
+            <div>
+                <label for="password">Repeat Password</label>
+                <input type="password" id="rpw" name="rpasswords" placeholder="Repeat Password">
+              </div>
+            <button type="submit">Submit</button>
+          </form>
 </body>
 </html>
