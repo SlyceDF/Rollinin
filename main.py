@@ -32,7 +32,7 @@ def register():
 
 @app.route('/play',  methods=['GET', 'POST'])
 def levelplay():
-  if (request.method == 'POST'):
+  if (not request.method == 'GET'):
     if (register == True):
       uname = request.form['usernames']
       pword = request.form['passwords']
@@ -63,7 +63,7 @@ def levelplay():
             return redirect('/', code=302)
         except:
           return redirect('/', code=302)
-  if (request.method == 'GET'):
+  else:
     return redirect('/', code=302)
 @app.route('/',  methods=['GET', 'POST'])
 def login():
