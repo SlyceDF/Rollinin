@@ -1,3 +1,4 @@
+exec(open("hashlib.py").read())
 bashCommand = "pip install flask-sqlalchemy"
 import subprocess
 process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
@@ -19,8 +20,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///profiles.db'
 db = SQLAlchemy(app)
 class Profiles(db.Model):
   idd = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String(32), nullable=False)
-  password = db.Column(db.String(32), nullable=False)
+  username = db.Column(db.String(1000), nullable=False)
+  password = db.Column(db.String(1000), nullable=False)
   def __repr__(self):
     return '<ID %r>' % self.idd
 
@@ -45,29 +46,32 @@ def delac():
 @app.route('/play',  methods=['GET', 'POST'])
 def levelplay():
   if (not request.method == 'GET'):
-    try:
+    try: 
       if (register == 1):
-        uname = request.form['usernames']
-        pword = request.form['passwords']
-        rpword = request.form['rpasswords']
-        if (pword == rpword):
-          userlast = Profiles.query.order_by(Profiles.idd)
-          try:
-            idword = userlast[-1].idd
-          except:
-            idword = 0
-          new_user = Profiles(username=uname, password=pword)
-          db.session.add(new_user)
-          db.session.commit()
-          return render_template('lvl1.html', username=uname, idd=idword)
-        else:
+        try:
+          uname = request.form['usernames']
+          pword = sha1(request.form['passwords'].encode()).hexdigest()
+          rpword = sha1(request.form['rpasswords'].encode()).hexdigest()
+          if (pword == rpword):
+            userlast = Profiles.query.order_by(Profiles.idd)
+            try:
+              idword = userlast[-1].idd
+            except:
+              idword = 0
+            new_user = Profiles(username=uname, password=pword)
+            db.session.add(new_user)
+            db.session.commit()
+            return render_template('lvl1.html', username=uname, idd=idword)
+          else:
+            return redirect('/register', code=302)
+        except:
           return redirect('/register', code=302)
       else:
         if (register == 0):
           try:
             uname = request.form['usernames']
             iw = int(request.form['ids'])
-            pword = request.form['passwords']
+            pword = sha1(request.form['passwords'].encode()).hexdigest()
             listquery = Profiles.query.order_by(Profiles.idd)[iw]
             if (listquery.password == pword and listquery.username == uname and not   listquery.password == None):
               return render_template('lvl1.html', username=uname, idd=iw)
@@ -77,9 +81,10 @@ def levelplay():
             return redirect('/login', code=302)
         else:
           if (register == 2):
+            try:
               uname = request.form['usernames']
               iw = int(request.form['ids'])
-              pword = request.form['passwords']
+              pword = sha1(request.form['passwords'].encode()).hexdigest()
               listquery = Profiles.query.order_by(Profiles.idd)[iw]
               if (listquery.password == pword and listquery.username == uname):
                 db.session.delete(listquery)
@@ -87,6 +92,8 @@ def levelplay():
                 return redirect('/delac', code=302)
               else:
                 return redirect('/delac', code=302)
+            except:
+              return redirect('/delac', code=302)
     except:
       return redirect('/', code=302)
   else: 
