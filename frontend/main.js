@@ -881,7 +881,7 @@ function nextLevel() {
 	$('#score').hide();
 	$('#prev').show();
 	$('#retry').hide();
-  $('#menu').hide();
+  $('#menu').show();
 	$('#play').show();
 	if (level == data.length - 1) {
 		$('#next').hide();
