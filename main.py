@@ -4,9 +4,7 @@ import subprocess
 process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 output, error = process.communicate()
 
-import time
-from flask import Flask, render_template, request, jsonify, redirect
-import sqlite3
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from threading import Thread
 
