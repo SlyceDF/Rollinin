@@ -1,4 +1,6 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&display=swap');
+
+#body {
 	overflow: hidden;
 	user-select: none;
 }
@@ -32,14 +34,21 @@ canvas {
   top: 20px;
   color: white;
   font-size: 40px;
-  font-family: Roboto;
-  font-weight: 700;
+  font-family: Comfortaa;
+  font-weight: 300;
 }
 #play{
   width: 200px;
   height: 100px;
   left: calc(50% - 200px / 2);
   bottom: 20px;
+}
+#menu{
+  width: 100px;
+  height: 50px;
+  left: 10px;
+  top: 10px;
+  text-decoration: none;
 }
 #retry{
   width: 200px;
@@ -65,12 +74,13 @@ canvas {
   position: fixed;
   background-color: #e0e0e0;
   color: #616161;
-  font-family: Roboto;
+  font-family: Comfortaa;
   font-weight: 700; 
   font-size: 70px;
   border-radius: 10px;
-  text-align: center;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button:hover{
   background-color: #bdbdbd;
@@ -80,8 +90,8 @@ canvas {
   top: 20%;
   left: calc(50% - 300px / 2);
   width: 300px;
-  font-family: Roboto;
-  font-weight: 700;
+  font-family: Comfortaa;
+  font-weight: 300;
   font-size: 100px;
   text-align: center;
   color: #e0e0e0;
@@ -109,10 +119,87 @@ canvas {
   width: 100%;
   text-align: center;
   display: inline-block;
-  font-family: Roboto;
-  font-weight: 700;
+  font-family: Comfortaa Light;
+  font-weight: 300;
   font-size: 30px;
 }
 #level-d:hover{
   color: #ddd;
+}
+#mainmenu {
+  background-image: url('lit.jpg');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  background-repeat: no-repeat;
+  margin: 0cm;
+}
+#formmenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.bfo {
+  border-radius: 14px;
+  width: 50vw;
+  height: 10vh;
+  background-color: rgba(255, 135, 0, 0.36);
+  border-color: rgba(255, 135, 0, 0.7);
+  border-width: 6px;
+  border-style: inset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(90, 48, 0);
+  caret-color: rgb(90, 48, 0);
+  font-family: Comfortaa;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  text-decoration: none;
+  font-size: 4vh;
+  transition-duration: 200ms;
+}
+.bfw::placeholder {
+  color: bisque;
+}
+.bfw::-ms-input-placeholder {
+  color: bisque;
+}
+.bfw {
+  border-radius: 14px;
+  width: 50vw;
+  height: 10vh;
+  background-color: rgba(255, 135, 0, 0.36);
+  border-color: rgba(255, 135, 0, 0.7);
+  border-width: 6px;
+  border-style: inset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(56, 30, 0);
+  font-family: Comfortaa;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 4vh;
+  transition-duration: 200ms;
+}
+.bfo:hover {
+  background-color: rgba(214, 114, 0, 0.36);
+  border-radius: 8px;
+}
+.bfw:hover {
+  background-color: rgba(214, 114, 0, 0.36);
+  border-radius: 8px;
+}
+.bfo:active {
+  background-color: rgba(185, 99, 0, 0.36);
+  border-radius: 12px;
+}
+.bfw:focus {
+  background-color: rgba(185, 99, 0, 0.36);
+  border-radius: 12px;
 }

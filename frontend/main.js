@@ -1,4 +1,5 @@
 $('#retry').hide();
+$('#menu').show();
 $('#play').click(start);
 $('#prev').hide();
 var scene = new THREE.Scene();
@@ -880,6 +881,7 @@ function nextLevel() {
 	$('#score').hide();
 	$('#prev').show();
 	$('#retry').hide();
+  $('#menu').show();
 	$('#play').show();
 	if (level == data.length - 1) {
 		$('#next').hide();
@@ -905,6 +907,7 @@ function prevLevel() {
 	$('#score').hide();
 	$('#next').show();
 	$('#retry').hide();
+  $('#menu').show();
 	$('#play').show();
 	if (level == 0) {
 		$('#prev').hide();
@@ -976,6 +979,7 @@ function gameover() {
 	ball.speed.z = 0;
 	$('#main').fadeIn(500);
 	$('#retry').show();
+  $('#menu').show();
 	$('#retry').click(start);
 	$('#score').show();
 	$('#score').html($('#percent').html());

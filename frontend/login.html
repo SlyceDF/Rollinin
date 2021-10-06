@@ -4,24 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="frontend/style.css"/>
+        <link rel="icon" type="image/x-icon" href="frontend/favicon.ico"/>
     <title>Login @SkyRoll</title>
 </head>
-<body>
-        <form action='/play' method="POST">
-            <div>
-              <label for="id">ID</label>
-              <input type="text" id="iw" name="ids" placeholder="Enter ID">
-            </div>
-            <div>
-              <label for="username">Username</label>
-              <input type="text" id="uname" name="usernames" placeholder="Enter Username">
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="pw" name="passwords" placeholder="Enter Password">
-              </div>
-            <button type="submit">Submit</button>
+<body id="mainmenu">
+        <form action='/play' method="POST" id="formmenu" autocomplete="off">
+              <input class="bfw" type="text" id="iw" name="ids" placeholder="Enter ID">
+              <input class="bfw" type="text" id="uname" name="usernames" placeholder="Enter Username">
+                <input class="bfw" type="password" id="pw" name="passwords" placeholder="Enter Password">
+            <button class="bfo" type="submit">Log In</button>
           </form>
-          <a href="/register">Don't have an account?</a>
+          <a class="bfo" href="/keepl">Keep Alive</a>
+          <a class="bfo" href="/">Menu</a>
 </body>
 </html>
