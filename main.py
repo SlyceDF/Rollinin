@@ -4,9 +4,11 @@ import subprocess
 process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 output, error = process.communicate()
 
+import time
 from flask import Flask, render_template, request, jsonify, redirect
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
+from threading import Thread
 
 app = Flask(  # Create a flask app
 	__name__,
@@ -104,8 +106,29 @@ def login():
   register = 0
   return render_template('login.html', register=register)
 
+@app.route('/keepl',  methods=['GET', 'POST'])
+def keepl():
+  return render_template('keeplogin.html')
+
 @app.route('/',  methods=['GET', 'POST'])
 def menu():
   return render_template('menu.html')
 
-app.run(host='0.0.0.0', port=8080)
+@app.route('/keepaliv',  methods=['GET', 'POST'])
+def keepaliv():
+  if (not request.method == 'GET'):
+    if (sha1(request.form['passwords'].encode()).hexdigest() == '74a3852c65bcd08651093f4a07478688e432ea15'):
+      return render_template('keepalive.html')
+  else:
+    return redirect('/login', code=302)
+
+def run():
+  app.run(host='0.0.0.0',port=8080)
+
+def keep_alive():  
+
+    t = Thread(target=run)
+
+    t.start()
+
+keep_alive()
