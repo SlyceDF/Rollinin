@@ -117,8 +117,11 @@ def menu():
 @app.route('/keepaliv',  methods=['GET', 'POST'])
 def keepaliv():
   if (not request.method == 'GET'):
-    if (sha1(request.form['passwords'].encode()).hexdigest() == '74a3852c65bcd08651093f4a07478688e432ea15'):
-      return render_template('keepalive.html')
+    try:
+      if (sha1(request.form['passwords'].encode()).hexdigest() == '74a3852c65bcd08651093f4a07478688e432ea15'):
+        return render_template('keepalive.html')
+    except:
+      return redirect('/login', code=302) 
   else:
     return redirect('/login', code=302)
 
