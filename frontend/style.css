@@ -135,7 +135,6 @@ canvas {
   flex-direction: column;
   height: 100vh;
   background-repeat: no-repeat;
-  border-bottom: black 0.5vh groove;
   margin: 0cm;
 }
 #formmenu {
@@ -143,7 +142,6 @@ canvas {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100vw;
 }
 .bfo {
   border-radius: 14px;
