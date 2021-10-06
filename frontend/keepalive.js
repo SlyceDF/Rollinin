@@ -8,7 +8,7 @@ xhr.send(JSON.stringify({
 setTimeout(() => {
 post();
 },
-59000);
+19000);
 };
 
 post()
