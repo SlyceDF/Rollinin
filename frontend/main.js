@@ -1,4 +1,5 @@
 $('#retry').hide();
+$('#menu').show();
 $('#play').click(start);
 $('#prev').hide();
 var scene = new THREE.Scene();
@@ -144,7 +145,7 @@ class Ball {
 						this.speed.y = 0.5;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 1;
-						let audio = new Audio('4.mp3');
+						let audio = new Audio('frontend/4.mp3');
 						audio.play();
 						this.last = 2;
 					}
@@ -157,7 +158,7 @@ class Ball {
 						this.speed.y = 0.39;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						let audio = new Audio('5.mp3');
+						let audio = new Audio('frontend/5.mp3');
 						audio.play();
 						this.last = 4;
 					}
@@ -521,7 +522,7 @@ class Ball {
 						this.speed.y = 0.5;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 1;
-						let audio = new Audio('4.mp3');
+						let audio = new Audio('frontend/4.mp3');
 						audio.play();
 						this.last = 2;
 					}
@@ -534,7 +535,7 @@ class Ball {
 						this.speed.y = 0.39;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						let audio = new Audio('5.mp3');
+						let audio = new Audio('frontend/5.mp3');
 						audio.play();
 						this.last = 4;
 					}
@@ -793,7 +794,7 @@ function jumper() {
 						ball.speed.y = 0.5;
 						ball.tmpZ = ball.mesh.position.z;
 						v.mesh.position.y = 1;
-						let audio = new Audio('4.mp3');
+						let audio = new Audio('frontend/4.mp3');
 						audio.play();
 						ball.last = 2;
 					}
@@ -806,7 +807,7 @@ function jumper() {
 						ball.speed.y = 0.39;
 						ball.tmpZ = ball.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						let audio = new Audio('5.mp3');
+						let audio = new Audio('frontend/5.mp3');
 						audio.play();
 						ball.last = 4;
 					}
@@ -880,6 +881,7 @@ function nextLevel() {
 	$('#score').hide();
 	$('#prev').show();
 	$('#retry').hide();
+  $('#menu').show();
 	$('#play').show();
 	if (level == data.length - 1) {
 		$('#next').hide();
@@ -905,6 +907,7 @@ function prevLevel() {
 	$('#score').hide();
 	$('#next').show();
 	$('#retry').hide();
+  $('#menu').show();
 	$('#play').show();
 	if (level == 0) {
 		$('#prev').hide();
@@ -976,6 +979,7 @@ function gameover() {
 	ball.speed.z = 0;
 	$('#main').fadeIn(500);
 	$('#retry').show();
+  $('#menu').show();
 	$('#retry').click(start);
 	$('#score').show();
 	$('#score').html($('#percent').html());
