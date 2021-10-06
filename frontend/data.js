@@ -1,4 +1,17 @@
 var daa = [
+    [
+  0xaaaaaa, //Background Color
+  0xff1111, //Ball Color
+  0xffff00, //Mat Color
+  0xcccc00, //Mat Outline
+  0xff9500, //Invisible Mat Outline
+  0xff00ff, //High Bouncer Color
+  0x0000ff, //Low Bouncer Color
+  0x00ffff, //Obstacle Color
+  0x00ddff, //Obstacle Outline
+  0x00ff08, //High Bouncemat Color
+  0xb7ff00  //Low Bouncemat Color
+    ],
     [0x9ee5ff, 0xf76700, 0xffc336, 0xc99518, 0xba5400, 0xffa600, 0xff6a00, 0xffc336, 0xc99518, 0x000000, 0xc48600],
     [0x001e40, 0x008cff, 0x003b82, 0x002857, 0x006ed4, 0x0051b5, 0x0083d4, 0x003b82, 0x002857],
     [0xf5c1ca, 0xfc217c, 0xff8091, 0xa64955, 0xabf9795, 0xfff7c2, 0xfffdf0, 0x9c354b, 0x5e2c37],
@@ -36,6 +49,27 @@ var daa = [
 ]
 ];
 var data = [
+[
+  [0, 1, 1, 1, 0],
+  [0, 1, 1, 1, 0],
+  [0, 1, 1, 1, 0],
+  [0, 0, 1, 0, 0],
+  [0, 0, 1, 0, 0],
+  [0, 4, 4, 4, 0],
+  [0, 0, 0, 0, 0],
+  [0, 1, 1, 1, 0],
+  [0, 1, 1, 1, 0],
+  [0, 0, 3, 1, 0],
+  [0, 0, 3, 1, 0],
+  [0, 0, 3, 1, 0],
+  [0, 0, 3, 1, 0],
+  [0, 1, 1, 1, 0],
+  [0, 1, 1, 0, 0],
+  [0, 4, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 4, 4, 4, 0]
+],
 [
       [1, 1, 1, 1, 1],
       [1, 1, 1, 1, 1],
