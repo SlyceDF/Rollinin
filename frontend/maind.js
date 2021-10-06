@@ -1,3 +1,4 @@
+
 const grid = $('#grid');
 
 let gridLength = 30;
@@ -28,6 +29,12 @@ $('#add').on('touchstart mousedown', e => {
   $('#grid').prepend('<tr><td></td><td></td><td></td><td></td><td></td></tr>');
   data.push([0, 0, 0, 0, 0]);
   gridLength++;
+});
+
+$('#menu').on('touchstart mousedown', e => {
+  e.preventDefault();
+  e.handled = true;
+  window.location.href = "/";
 });
 
 $('#remove').on('touchstart mousedown', e => {

@@ -1,4 +1,5 @@
 $('#retry').hide();
+$('#menu').show();
 $('#play').click(start);
 $('#prev').hide();
 var scene = new THREE.Scene();
@@ -144,7 +145,7 @@ class Ball {
 						this.speed.y = 0.5;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 1;
-						let audio = new Audio('4.mp3');
+						let audio = new Audio('frontend/4.mp3');
 						audio.play();
 						this.last = 2;
 					}
@@ -157,7 +158,7 @@ class Ball {
 						this.speed.y = 0.39;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						let audio = new Audio('5.mp3');
+						let audio = new Audio('frontend/5.mp3');
 						audio.play();
 						this.last = 4;
 					}
@@ -176,7 +177,7 @@ class Ball {
 				if (v.detect()) gameover();
 		});
 	}
-}
+};
 class Mat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -201,7 +202,7 @@ class Mat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class DelMat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -226,7 +227,7 @@ class DelMat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Bouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -250,7 +251,7 @@ class Bouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class SlowBouncer {
 	constructor(xpos, zpos) {
@@ -275,7 +276,7 @@ class SlowBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Obstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.7, 1);
@@ -302,7 +303,7 @@ class Obstacle {
 			ball.mesh.position.y < this.mesh.position.y + 0.85
 		) return true;
 	}
-}
+};
 class HighObstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 3, 1);
@@ -329,7 +330,7 @@ class HighObstacle {
 			ball.mesh.position.y < this.mesh.position.y + 3
 		) return true;
 	}
-}
+};
 class HighlowObstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 2, 1);
@@ -356,7 +357,7 @@ class HighlowObstacle {
 			ball.mesh.position.y < this.mesh.position.y + 2
 		) return true;
 	}
-}
+};
 class MatBouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -380,7 +381,7 @@ class MatBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class MatsBouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -404,7 +405,7 @@ class MatsBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 function objectUpdate() {
 class Ball {
 	constructor() {
@@ -420,7 +421,7 @@ class Ball {
 		this.count2Lose = 0;
 		this.last = 0;
 		this.mesh.name = 'ball';
-	}
+	};
 
 	update() {
 		this.mesh.position.y += this.speed.y;
@@ -521,7 +522,7 @@ class Ball {
 						this.speed.y = 0.5;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 1;
-						let audio = new Audio('4.mp3');
+						let audio = new Audio('frontend/4.mp3');
 						audio.play();
 						this.last = 2;
 					}
@@ -534,7 +535,7 @@ class Ball {
 						this.speed.y = 0.39;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						let audio = new Audio('5.mp3');
+						let audio = new Audio('frontend/5.mp3');
 						audio.play();
 						this.last = 4;
 					}
@@ -553,7 +554,7 @@ class Ball {
 				if (v.detect()) gameover();
 		});
 	}
-}
+};
 class Mat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -578,7 +579,7 @@ class Mat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class DelMat {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -603,7 +604,7 @@ class DelMat {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Bouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -627,7 +628,7 @@ class Bouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class MatBouncer {
 	constructor(xpos, zpos) {
@@ -652,7 +653,7 @@ class MatBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class MatsBouncer {
 	constructor(xpos, zpos) {
@@ -677,7 +678,7 @@ class MatsBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 
 class SlowBouncer {
 	constructor(xpos, zpos) {
@@ -702,7 +703,7 @@ class SlowBouncer {
 			ball.mesh.position.z <= 0.5
 		) return true;
 	}
-}
+};
 class Obstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.7, 1);
@@ -729,7 +730,7 @@ class Obstacle {
 			ball.mesh.position.y < this.mesh.position.y + 0.85
 		) return true;
 	}
-}
+};
 class HighObstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 3, 1);
@@ -783,7 +784,7 @@ class HighlowObstacle {
 			ball.mesh.position.y < this.mesh.position.y + 2
 		) return true;
 	}
-}
+};
 }
 function jumper() {
       world.forEach(v => {
@@ -793,7 +794,7 @@ function jumper() {
 						ball.speed.y = 0.5;
 						ball.tmpZ = ball.mesh.position.z;
 						v.mesh.position.y = 1;
-						let audio = new Audio('4.mp3');
+						let audio = new Audio('frontend/4.mp3');
 						audio.play();
 						ball.last = 2;
 					}
@@ -806,7 +807,7 @@ function jumper() {
 						ball.speed.y = 0.39;
 						ball.tmpZ = ball.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						let audio = new Audio('5.mp3');
+						let audio = new Audio('frontend/5.mp3');
 						audio.play();
 						ball.last = 4;
 					}
@@ -880,6 +881,7 @@ function nextLevel() {
 	$('#score').hide();
 	$('#prev').show();
 	$('#retry').hide();
+  $('#menu').show();
 	$('#play').show();
 	if (level == data.length - 1) {
 		$('#next').hide();
@@ -905,6 +907,7 @@ function prevLevel() {
 	$('#score').hide();
 	$('#next').show();
 	$('#retry').hide();
+  $('#menu').show();
 	$('#play').show();
 	if (level == 0) {
 		$('#prev').hide();
@@ -976,6 +979,7 @@ function gameover() {
 	ball.speed.z = 0;
 	$('#main').fadeIn(500);
 	$('#retry').show();
+  $('#menu').show();
 	$('#retry').click(start);
 	$('#score').show();
 	$('#score').html($('#percent').html());
