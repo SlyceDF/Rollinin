@@ -851,6 +851,10 @@ function start(e) {
 			}
 		});
 		$('#main').css('pointer-events', 'none');
+    if (level == 11) {
+      elev = new Audio('frontend/11.ogg')
+      elev.play()
+    }
 	}
 }
 function reset() {
@@ -860,6 +864,14 @@ function reset() {
 	ball.mesh.position.set(0, 0.6, 0);
 	ball.speed.y = 0;
 	ball.count2Lose = 0;
+  if (level == 11) {
+    try {
+      elev.pause();
+      elev.currentTime = 0;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 function nextLevel() {
 	percent = 0;
@@ -984,6 +996,15 @@ function gameover() {
 	$('#score').show();
 	$('#score').html($('#percent').html());
 	$('#main').css('pointer-events', 'auto');
+  if (level == 11) {
+    try {
+      elev.pause();
+      elev.currentTime = 0;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 }
 
 
