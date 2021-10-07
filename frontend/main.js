@@ -9,8 +9,53 @@ var camera = new THREE.PerspectiveCamera(
 	1,
 	10000
 );
+
+//XML Manipulations...
+ function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+ var response = httpGet('frontend/data.xml')
+
+ var xmlDoc = $.parseXML( response );
+        
+ var ldata = getXMLToArray(xmlDoc)['leveldata'];
+        
+        function getXMLToArray(xmlDoc){
+  var thisArray = new Array();
+  //Check XML doc
+  if($(xmlDoc).children().length > 0){
+    //Foreach Node found
+    $(xmlDoc).children().each(function(){
+      if($(xmlDoc).find(this.nodeName).children().length > 0){
+        //If it has children recursively get the inner array
+        var NextNode = $(xmlDoc).find(this.nodeName);
+        thisArray[this.nodeName] = getXMLToArray(NextNode);
+      } else {
+        //If not then store the next value to the current array
+        thisArray[this.nodeName] = [];
+        try {
+        $(xmlDoc).children(this.nodeName).each(function(){
+          thisArray[this.nodeName].push(eval($(this).text()));
+        });} catch (error) {
+            $(xmlDoc).children(this.nodeName).each(function(){
+          thisArray[this.nodeName].push($(this).text());
+        });
+        }
+      }
+    });
+  }
+  return thisArray;
+  }
+//endfor Manipulations...
+
 var level = 0;
-var levelcolors = daa[level]
+var levelcolors = ldata['level']['colors'][level]
+var data = ldata['level']['layout']
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(levelcolors[0], 1);
@@ -29,7 +74,6 @@ var scoreSubmitted = false;
 AND COLORS*/
 
 
-
 class Ball {
 	constructor() {
 		this.geometry = new THREE.SphereGeometry(0.5, 100, 100);
@@ -44,7 +88,7 @@ class Ball {
 		this.count2Lose = 0;
 		this.last = 0;
 		this.mesh.name = 'ball';
-	}
+	};
 
 	update() {
 		this.mesh.position.y += this.speed.y;
@@ -253,6 +297,56 @@ class Bouncer {
 	}
 };
 
+class MatBouncer {
+	constructor(xpos, zpos) {
+		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
+		this.material = new THREE.MeshBasicMaterial({ color: levelcolors[9] });
+		this.mesh = new THREE.Mesh(this.geometry, this.material);
+		this.edgesGeometry = new THREE.EdgesGeometry(this.geometry);
+		this.edgesMaterial = new THREE.LineBasicMaterial({ color: 0xd9ae96 });
+		this.line = new THREE.LineSegments(this.edgesGeometry, this.edgesMaterial);
+		this.mesh.position.set(xpos, 0, zpos);
+		this.line.position.set(xpos, 0, zpos);
+		this.mesh.name = 'level component';
+		this.line.name = 'level component';
+		scene.add(this.mesh);
+	}
+	detect() {
+		if (
+			ball.mesh.position.x >= this.mesh.position.x - 0.5 &&
+			ball.mesh.position.x <= this.mesh.position.x + 0.5 &&
+			ball.mesh.position.z >= this.mesh.position.z - 0.5 &&
+			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
+			ball.mesh.position.z <= 0.5
+		) return true;
+	}
+};
+
+class MatsBouncer {
+	constructor(xpos, zpos) {
+		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
+		this.material = new THREE.MeshBasicMaterial({ color: levelcolors[10] });
+		this.mesh = new THREE.Mesh(this.geometry, this.material);
+		this.edgesGeometry = new THREE.EdgesGeometry(this.geometry);
+		this.edgesMaterial = new THREE.LineBasicMaterial({ color: 0xd9ae96 });
+		this.line = new THREE.LineSegments(this.edgesGeometry, this.edgesMaterial);
+		this.mesh.position.set(xpos, 0, zpos);
+		this.line.position.set(xpos, 0, zpos);
+		this.mesh.name = 'level component';
+		this.line.name = 'level component';
+		scene.add(this.mesh);
+	}
+	detect() {
+		if (
+			ball.mesh.position.x >= this.mesh.position.x - 0.5 &&
+			ball.mesh.position.x <= this.mesh.position.x + 0.5 &&
+			ball.mesh.position.z >= this.mesh.position.z - 0.5 &&
+			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
+			ball.mesh.position.z <= 0.5
+		) return true;
+	}
+};
+
 class SlowBouncer {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
@@ -330,7 +424,7 @@ class HighObstacle {
 			ball.mesh.position.y < this.mesh.position.y + 3
 		) return true;
 	}
-};
+}
 class HighlowObstacle {
 	constructor(xpos, zpos) {
 		this.geometry = new THREE.BoxGeometry(1, 2, 1);
@@ -355,54 +449,6 @@ class HighlowObstacle {
 			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
 			ball.mesh.position.z <= 0.5 &&
 			ball.mesh.position.y < this.mesh.position.y + 2
-		) return true;
-	}
-};
-class MatBouncer {
-	constructor(xpos, zpos) {
-		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
-		this.material = new THREE.MeshBasicMaterial({ color: levelcolors[9] });
-		this.mesh = new THREE.Mesh(this.geometry, this.material);
-		this.edgesGeometry = new THREE.EdgesGeometry(this.geometry);
-		this.edgesMaterial = new THREE.LineBasicMaterial({ color: 0xd9ae96 });
-		this.line = new THREE.LineSegments(this.edgesGeometry, this.edgesMaterial);
-		this.mesh.position.set(xpos, 0, zpos);
-		this.line.position.set(xpos, 0, zpos);
-		this.mesh.name = 'level component';
-		this.line.name = 'level component';
-		scene.add(this.mesh);
-	}
-	detect() {
-		if (
-			ball.mesh.position.x >= this.mesh.position.x - 0.5 &&
-			ball.mesh.position.x <= this.mesh.position.x + 0.5 &&
-			ball.mesh.position.z >= this.mesh.position.z - 0.5 &&
-			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
-			ball.mesh.position.z <= 0.5
-		) return true;
-	}
-};
-class MatsBouncer {
-	constructor(xpos, zpos) {
-		this.geometry = new THREE.BoxGeometry(1, 0.2, 1);
-		this.material = new THREE.MeshBasicMaterial({ color: levelcolors[10] });
-		this.mesh = new THREE.Mesh(this.geometry, this.material);
-		this.edgesGeometry = new THREE.EdgesGeometry(this.geometry);
-		this.edgesMaterial = new THREE.LineBasicMaterial({ color: 0xd9ae96 });
-		this.line = new THREE.LineSegments(this.edgesGeometry, this.edgesMaterial);
-		this.mesh.position.set(xpos, 0, zpos);
-		this.line.position.set(xpos, 0, zpos);
-		this.mesh.name = 'level component';
-		this.line.name = 'level component';
-		scene.add(this.mesh);
-	}
-	detect() {
-		if (
-			ball.mesh.position.x >= this.mesh.position.x - 0.5 &&
-			ball.mesh.position.x <= this.mesh.position.x + 0.5 &&
-			ball.mesh.position.z >= this.mesh.position.z - 0.5 &&
-			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
-			ball.mesh.position.z <= 0.5
 		) return true;
 	}
 };
@@ -813,7 +859,7 @@ function jumper() {
 					}
 				}
 			});
-}
+};
 
 
 // MAIN
@@ -851,6 +897,10 @@ function start(e) {
 			}
 		});
 		$('#main').css('pointer-events', 'none');
+    if (level == 11) {
+      elev = new Audio('frontend/11.ogg')
+      elev.play()
+    }
 	}
 }
 function reset() {
@@ -860,6 +910,14 @@ function reset() {
 	ball.mesh.position.set(0, 0.6, 0);
 	ball.speed.y = 0;
 	ball.count2Lose = 0;
+  if (level == 11) {
+    try {
+      elev.pause();
+      elev.currentTime = 0;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 function nextLevel() {
 	percent = 0;
@@ -872,7 +930,7 @@ function nextLevel() {
 	scene.remove(scene.getObjectByName('ball'))
 	world = [];
 	level++;
-	levelcolors = daa[level];
+	levelcolors = ldata['level']['colors'][level];
 	renderer.setClearColor(levelcolors[0], 1);
 	objectUpdate();
 	loadLevel(level); 
@@ -898,7 +956,7 @@ function prevLevel() {
 	scene.remove(scene.getObjectByName('ball'))
 	world = [];
 	level--;
-	levelcolors = daa[level];
+	levelcolors = ldata['level']['colors'][level];
 	renderer.setClearColor(levelcolors[0], 1);
 	objectUpdate();
 	loadLevel(level);
@@ -984,6 +1042,15 @@ function gameover() {
 	$('#score').show();
 	$('#score').html($('#percent').html());
 	$('#main').css('pointer-events', 'auto');
+  if (level == 11) {
+    try {
+      elev.pause();
+      elev.currentTime = 0;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 }
 
 

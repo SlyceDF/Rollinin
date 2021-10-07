@@ -1,8 +1,8 @@
 exec(open("hashlib.py").read())
-bashCommand = "pip install flask-sqlalchemy"
-import subprocess
-process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-output, error = process.communicate()
+#bashCommand = "pip install flask-sqlalchemy"
+#import subprocess
+#process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+#output, error = process.communicate()
 
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -42,6 +42,10 @@ def delac():
   global register
   register = 2
   return render_template('deleteacc.html', register=register)
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+  return render_template('testxml.html')
 
 @app.route('/play',  methods=['GET', 'POST'])
 def levelplay():

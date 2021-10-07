@@ -1,0 +1,20 @@
+{
+  "files": {
+    "frontend/data.js": [
+      {
+        "id": "6e5beb37-ba20-4804-9ac2-7f77df5c8825",
+        "line": 46,
+        "version": 121,
+        "index": 1590
+      }
+    ],
+    "frontend/data.xml": [
+      {
+        "id": "4130b54d-5b2a-45d6-b7b8-886638283e8e",
+        "line": 63,
+        "version": 221,
+        "index": 1919
+      }
+    ]
+  }
+}
