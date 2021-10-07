@@ -1271,4 +1271,58 @@
   ]
       </layout>
     </level>
+    <!--
+    <level>
+      <colors>
+        [
+          0xff9854, //Background Color
+          0xff6500, //Ball Color
+          0xd97a3f, //Mat Color
+          0xad6132, //Mat Outline
+          0xd9963f, //Invisible Mat Outline
+          0xff7700, //High Bouncer Color
+          0xff6a00, //Low Bouncer Color
+          0xd97a3f, //Obstacle Color
+          0xad6132, //Obstacle Outline
+          0xc95e00, //High Bouncemat Color
+          0xc45200  //Low Bouncemat Color
+        ]
+      </colors>
+      <layout>
+        [
+          [1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1],
+          [0, 1, 1, 1, 0],
+          [0, 2, 2, 2, 0],
+          [0, 1, 1, 1, 0],
+          [0, 0, 6, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 2, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 6, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 2, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 6, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 2, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 6, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 2, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 6, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 2, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 6, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 2, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0]
+        ]
+      </layout>
+    </level>
+    -->
 </leveldata>
