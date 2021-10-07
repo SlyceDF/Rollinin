@@ -89,6 +89,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "pyv8"
+version = "0.5"
+description = "Python Wrapper for Google V8 Engine"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "sqlalchemy"
 version = "1.4.25"
 description = "Database Abstraction Library"
@@ -134,7 +142,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "dcd38fea1b3ebcd831414e8f443190f821e7e4820a885d65a0fc3ce4fb42b16a"
+content-hash = "b8f29a7e2e4995473e678c63f7e1e585606e3aa535a3ed9a56b21da2d535dc28"
 
 [metadata.files]
 click = [
@@ -268,6 +276,10 @@ markupsafe = [
     {file = "MarkupSafe-2.0.1-cp39-cp39-win32.whl", hash = "sha256:10f82115e21dc0dfec9ab5c0223652f7197feb168c940f3ef61563fc2d6beb74"},
     {file = "MarkupSafe-2.0.1-cp39-cp39-win_amd64.whl", hash = "sha256:693ce3f9e70a6cf7d2fb9e6c9d8b204b6b39897a2c4a1aa65728d5ac97dcc1d8"},
     {file = "MarkupSafe-2.0.1.tar.gz", hash = "sha256:594c67807fb16238b30c44bdf74f36c02cdf22d1c8cda91ef8a0ed8dabf5620a"},
+]
+pyv8 = [
+    {file = "PyV8-0.5.win32-py2.5.exe", hash = "sha256:d763600ca6235786be04f5a15524d9dc8141e16f0425432fe6ff747290df365c"},
+    {file = "PyV8-0.5.zip", hash = "sha256:0bbcd76facd895a8554f3a13b802dc23ae6a846cab1c7d06d675823c4a984012"},
 ]
 sqlalchemy = [
     {file = "SQLAlchemy-1.4.25-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:a36ea43919e51b0de0c0bc52bcfdad7683f6ea9fb81b340cdabb9df0e045e0f7"},
