@@ -33,42 +33,45 @@ canvas {
   right: 20px;
   top: 20px;
   color: white;
-  font-size: 40px;
+  font-size: 4vw;
   font-family: Comfortaa;
   font-weight: 300;
 }
 #play{
-  width: 200px;
-  height: 100px;
-  left: calc(50% - 200px / 2);
-  bottom: 20px;
+  width: 24vw;
+  height: 12vw;
+  left: calc(50% - 24vw / 2);
+  bottom: 2.4vw;
+  font-size: 10vw;
 }
 #menu{
-  width: 100px;
-  height: 50px;
-  left: 10px;
-  top: 10px;
+  width: 12vw;
+  height: 6vw;
+  left: 1.2vw;
+  top: 1.2vw;
+  font-size: 8vw;
   text-decoration: none;
 }
 #retry{
-  width: 200px;
-  height: 100px;
-  left: calc(50% - 200px / 2);
-  bottom: 20px;
+  width: 24vw;
+  height: 12vw;
+  left: calc(50% - 24vw / 2);
+  bottom: 2.4vw;
+  font-size: 10vw;
 }
 #next{
-  width: 100px;
-  height: 70px;
-  right: 10px;
-  bottom: 20px;
-  font-size: 50px;
+  width: 12vw;
+  height: 8.4vw;
+  right: 1.2vw;
+  bottom: 2.4vw;
+  font-size: 6vw;
 }
 #prev{
-  width: 100px;
-  height: 70px;
-  left: 10px;
-  bottom: 20px;
-  font-size: 50px;
+  width: 12vw;
+  height: 8.4vw;
+  left: 1.2vw;
+  bottom: 2.4vw;
+  font-size: 6vw;
 }
 .button{
   position: fixed;
@@ -88,11 +91,11 @@ canvas {
 #score{
   position: fixed;
   top: 20%;
-  left: calc(50% - 300px / 2);
-  width: 300px;
+  left: calc(50% - 36vw / 2);
+  width: 36vw;
   font-family: Comfortaa;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 12vw;
   text-align: center;
   color: #e0e0e0;
 }
@@ -144,12 +147,12 @@ canvas {
   flex-direction: column;
 }
 .bfo {
-  border-radius: 14px;
+  border-radius: 2vw;
   width: 50vw;
   height: 10vh;
   background-color: rgba(255, 135, 0, 0.36);
   border-color: rgba(255, 135, 0, 0.7);
-  border-width: 6px;
+  border-width: 0.5vw;
   border-style: inset;
   display: flex;
   justify-content: center;
@@ -160,7 +163,7 @@ canvas {
   margin-top: 2vw;
   margin-bottom: 2vw;
   text-decoration: none;
-  font-size: 4vh;
+  font-size: 3vh;
   transition-duration: 200ms;
 }
 .bfw::placeholder {
@@ -170,12 +173,12 @@ canvas {
   color: bisque;
 }
 .bfw {
-  border-radius: 14px;
+  border-radius: 2vw;
   width: 50vw;
   height: 10vh;
   background-color: rgba(255, 135, 0, 0.36);
   border-color: rgba(255, 135, 0, 0.7);
-  border-width: 6px;
+  border-width: 0.5vw;
   border-style: inset;
   display: flex;
   justify-content: center;
@@ -184,22 +187,22 @@ canvas {
   font-family: Comfortaa;
   margin: 10px;
   text-decoration: none;
-  font-size: 4vh;
+  font-size: 3vh;
   transition-duration: 200ms;
 }
 .bfo:hover {
   background-color: rgba(214, 114, 0, 0.36);
-  border-radius: 8px;
+  border-radius: 0.5vw;
 }
 .bfw:hover {
   background-color: rgba(214, 114, 0, 0.36);
-  border-radius: 8px;
+  border-radius: 0.5vw;
 }
 .bfo:active {
   background-color: rgba(185, 99, 0, 0.36);
-  border-radius: 12px;
+  border-radius: 1vw;
 }
 .bfw:focus {
   background-color: rgba(185, 99, 0, 0.36);
-  border-radius: 12px;
+  border-radius: 1vw;
 }

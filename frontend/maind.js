@@ -71,26 +71,31 @@ function move(e){
 function up(e){
   e.preventDefault();
   mouseDown = false;
-  let str = `[
-  0xaaaaaa, //Background Color
-  0xff1111, //Ball Color
-  0xffff00, //Mat Color
-  0xcccc00, //Mat Outline
-  0xff9500, //Invisible Mat Outline
-  0xff00ff, //High Bouncer Color
-  0x0000ff, //Low Bouncer Color
-  0x00ffff, //Obstacle Color
-  0x00ddff, //Obstacle Outline
-  0x00ff08, //High Bouncemat Color
-  0xb7ff00  //Low Bouncemat Color
-];
-
-[
+  let str = `<level>
+  <colors>
+    [
+      0xaaaaaa, //Background Color
+      0xff1111, //Ball Color
+      0xffff00, //Mat Color
+      0xcccc00, //Mat Outline
+      0xff9500, //Invisible Mat Outline
+      0xff00ff, //High Bouncer Color
+      0x0000ff, //Low Bouncer Color
+      0x00ffff, //Obstacle Color
+      0x00ddff, //Obstacle Outline
+      0x00ff08, //High Bouncemat Color
+      0xb7ff00  //Low Bouncemat Color
+    ]
+  </colors>
+  <layout>
+    [
 `;
   data.forEach((r, i) => 
-    str += "  [" + r.join(", ") + "]" + (i == data.length - 1? "": ",\n")
+    str += "      [" + r.join(", ") + "]" + (i == data.length - 1? "": ",\n")
   );
   $("#output").val(str + `
-]`
+    ]
+  </layout>
+</level>`
     );
 }
