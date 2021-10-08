@@ -7,6 +7,24 @@
   height: 100%;
   overflow-y: auto;
 }
+#colorwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+  margin-right: 5px;
+  width: 150px;
+}
+#buttonwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+}
+button {
+  width: 100px;
+  margin-bottom: 3px;
+}
 #main{
   position: fixed;
   top: 0;
@@ -16,6 +34,8 @@
   height: 100%;
   font-family: Comfortaa;
   padding: 8px;
+  display: flex;
+  flex-direction: column;
 }
 #grid, td{
   border: 1px solid;
@@ -36,6 +56,7 @@ td{
   border: 1px solid;
   background-color: #ffff00;
   font-size: 15px;
+  margin-bottom: 5px;
 }
 #output{
   border-radius: 0;
@@ -44,4 +65,7 @@ td{
   height: 500px;
   display: block;
   overflow: auto;
+}
+h1 {
+  margin-top: 5px;
 }

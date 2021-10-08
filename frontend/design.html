@@ -1,4 +1,4 @@
-c<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8"/>
@@ -6,28 +6,35 @@ c<!DOCTYPE html>
     <title>Level Editor</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"/>
     <link href="frontend/styled.css" rel="stylesheet" type="text/css" />
-        <link rel="icon" type="image/x-icon" href="frontend/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="frontend/favicon.ico"/>
   </head>
   <body>
     <div id="designer">
       <table id="grid"></table>
     </div>
     <div id="main">
-      
-      <div id="color"></div>
-      <button id="add">Add Row</button>
-      <button id="remove">Remove Row</button>
-      <button id="menu">Menu</button>
       <h1>SkyRoll Level Editor</h1>
-      <ol>
-        <li>Click the circle to change the tile type.</li><br/>
-        <li>Click or drag the squares to change their tilestate. The squares represent the tiles of the game.</li><br/>
-        <li>Copy all the text inside the text box below.</li><br/>
-        <li>
-         Go to the SkyRoll repl and add the content to level data.
-         </li>
-      </ol>
-      <textarea readonly id="output"></textarea>
+      <div>
+        <div id="colorwrap">
+          <div id="color"></div>
+          <span id="cinfo"></span>
+        </div>
+        <div id="buttonwrap">
+          <button id="add">Add Row</button>
+          <button id="remove">Remove Row</button>
+          <button id="menu">Menu</button>
+        </div>
+      </div>
+      <div>
+        <ol>
+          <li>Click the circle to change the tile type.</li><br/>
+          <li>Click or drag the squares to change their tilestate. The squares represent the tiles of the game.</li><br/>
+          <li>Copy all the text inside the text box below.</li><br/>
+          <li>Go to the SkyRoll repl and add the content to level data.
+          </li>
+        </ol>
+        <textarea readonly id="output"></textarea>
+      </div>
     </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>    
