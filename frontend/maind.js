@@ -3,6 +3,20 @@ const grid = $('#grid');
 
 let gridLength = 30;
 let mouseDown = false;
+let idata = [
+  'Void',
+  'Mat',
+  'High Bouncer',
+  'Low Obstacle',
+  'Low Bouncer',
+  'Invisible Mat',
+  'High Obstacle',
+  'Medium Obstacle',
+  'High Bouncemat',
+  'Low Bouncemat'
+]
+
+document.body.querySelector('#cinfo').innerHTML = idata[1]
 
 const data = [];
 for (let i = 0; i < gridLength; i++) {
@@ -21,6 +35,7 @@ $('#color').on('touchstart mousedown', e => {
   e.handled = true;
 	color = (color + 1) % 10;
 	$('#color').css('background-color', colors[color]);
+  document.body.querySelector('#cinfo').innerHTML = idata[color];
 });
 
 $('#add').on('touchstart mousedown', e => {
