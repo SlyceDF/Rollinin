@@ -1,8 +1,21 @@
 var audio = new Audio('frontend/4.mp3');
-var audio = new Audio('frontend/5.mp3');
-var audio = new Audio('frontend/upgrade.mp3');
+audio = new Audio('frontend/5.mp3');
+audio = new Audio('frontend/upgrade.mp3');
 var diama = []
 var elevlevel = undefined
+var dinum = 0
+var diamsave = eval(diamsavee)
+function sumArray(arr) {
+    var total = 0;
+    arr.forEach(function(element){
+        if (element != undefined) {
+        total += + element;
+        } else {
+        total += 0
+        }
+    })
+    return total;
+}
 
 $('#retry').hide();
 $('#menu').show();
@@ -63,6 +76,12 @@ var camera = new THREE.PerspectiveCamera(
 var level = 0;
 var levelcolors = ldata['level']['colors'][level]
 var data = ldata['level']['layout']
+for (let i = 0; i<=data.length; i++) {
+    diam[i] = diam[i];
+};
+for (let i = 0; i<=data.length; i++) {
+    diamsave[i] = diamsave[i];
+};
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(levelcolors[0], 1);
@@ -74,6 +93,9 @@ var percent = 0;
 camera.position.set(0, 5, distance);
 camera.rotation.x -= 0.75;
 var scoreSubmitted = false;
+var getdi = 0
+var thislevel = ''
+let tlt = ['none here', 'one here']
 
 
 
@@ -1121,8 +1143,35 @@ loadLevel(level);
 var ball = new Ball();
 
 keystate = [];
+//equalityofarrays
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length !== b.length) return false;
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
 //Loop function
 var render = function () {
+  if (arraysEqual(diam, diamsave)) {
+    document.body.querySelector('#sd').innerHTML = '◆'
+  } else {
+    document.body.querySelector('#sd').innerHTML = '◈'
+  }
+  dinum = sumArray(diam);
+  if (diam[level] != undefined) {
+    getdi = + diam[level]
+  } else {
+    getdi = 0
+  };
+  if (dinum != 0) {
+    thislevel = ', ' + tlt[getdi]
+  } else {
+    thislevel = ''
+  };
+  document.body.querySelector('#dlist').innerHTML = dinum.toString() + ' ❖' + thislevel
 	renderer.render(scene, camera);
 	ball.update();
 	percent = Math.ceil(
@@ -1145,6 +1194,12 @@ function sd() {
 xhr.open("POST", '/playad');
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send("{\"dmonds\":\"[" + diam.toString() + "]\", \"iw\":" + iw.toString() + "}");
+for (let i = 0; i<=data.length; i++) {
+    diamsave[i] = diam[i];
+  };
+for (let i = 0; i<=data.length; i++) {
+    diam[i] = diam[i];
+  }
 };
 function sdd() {
   diam[level] = undefined
