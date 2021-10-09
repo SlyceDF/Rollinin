@@ -1,7 +1,6 @@
-const lbounce = new Audio('frontend/4.mp3');
-const hbounce = new Audio('frontend/5.mp3');
-const dsnd = new Audio('frontend/upgrade.mp3');
-const elev = new Audio('frontend/11.ogg');
+var audio = new Audio('frontend/4.mp3');
+audio = new Audio('frontend/5.mp3');
+audio = new Audio('frontend/upgrade.mp3');
 var diama = []
 var elevlevel = undefined
 var dinum = 0
@@ -219,7 +218,8 @@ class Ball {
 						this.speed.y = 0.5;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 1;
-						lbounce.play();
+						let audio = new Audio('frontend/4.mp3');
+						audio.play();
 						this.last = 2;
 					}
 				}
@@ -228,7 +228,8 @@ class Ball {
 				if (v instanceof Diamond && this.landed) {
 					if (v.detect()) {
             if (diam[level] != true && diama[level] != true){
-						dsnd.play();
+						let audio = new Audio('frontend/upgrade.mp3');
+						audio.play();
             while (scene.getObjectByName('diamond') != undefined) {
             scene.remove(scene.getObjectByName('diamond'))};
             diama[level] = true;
@@ -244,7 +245,8 @@ class Ball {
 						this.speed.y = 0.39;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						hbounce.play();
+						let audio = new Audio('frontend/5.mp3');
+						audio.play();
 						this.last = 4;
 					}
 				}
@@ -633,7 +635,8 @@ class Ball {
 						this.speed.y = 0.5;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 1;
-						lbounce.play();
+						let audio = new Audio('frontend/4.mp3');
+						audio.play();
 						this.last = 2;
 					}
 				}
@@ -641,8 +644,9 @@ class Ball {
       world.forEach(v => {
 				if (v instanceof Diamond && this.landed) {
 					if (v.detect()) {
-            if (diam[level] != true && diama[level] != true) {
-						dsnd.play();
+            if (diam[level] != true && diama[level] != true){
+						let audio = new Audio('frontend/upgrade.mp3');
+						audio.play();
             while (scene.getObjectByName('diamond') != undefined) {
             scene.remove(scene.getObjectByName('diamond'))};
             diama[level] = true;
@@ -658,7 +662,8 @@ class Ball {
 						this.speed.y = 0.39;
 						this.tmpZ = this.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						hbounce.play();
+						let audio = new Audio('frontend/5.mp3');
+						audio.play();
 						this.last = 4;
 					}
 				}
@@ -941,7 +946,8 @@ function jumper() {
 						ball.speed.y = 0.5;
 						ball.tmpZ = ball.mesh.position.z;
 						v.mesh.position.y = 1;
-						lbounce.play();
+						let audio = new Audio('frontend/4.mp3');
+						audio.play();
 						ball.last = 2;
 					}
 				}
@@ -954,7 +960,8 @@ function jumper() {
 						ball.speed.y = 0.39;
 						ball.tmpZ = ball.mesh.position.z;
 						v.mesh.position.y = 0.5;
-						hbounce.play();
+						let audio = new Audio('frontend/5.mp3');
+						audio.play();
 						ball.last = 4;
 					}
 				}
@@ -1008,6 +1015,7 @@ function start(e) {
 		});
 		$('#main').css('pointer-events', 'none');
     if (level == elevlevel) {
+      elev = new Audio('frontend/11.ogg')
       elev.play()
     }
 	}
