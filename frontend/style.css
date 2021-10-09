@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&display=swap');
 
+@font-face{
+  src: url('DejaVuSans.ttf');
+  font-family: FreeSans
+}
 #body {
 	overflow: hidden;
 	user-select: none;
@@ -52,6 +56,23 @@ canvas {
   font-size: 8vw;
   text-decoration: none;
 }
+#sd{
+  width: 12vw;
+  height: 6vw;
+  left: 1.2vw;
+  top: 8.4vw;
+  font-size: 6vw;
+  border: none;
+  padding-bottom: 1vw;
+}
+#sdd{
+  width: 12vw;
+  height: 6vw;
+  left: 1.2vw;
+  top: 15.6vw;
+  font-size: 6vw;
+  border: none;
+}
 #retry{
   width: 24vw;
   height: 12vw;
@@ -77,7 +98,7 @@ canvas {
   position: fixed;
   background-color: #e0e0e0;
   color: #616161;
-  font-family: Comfortaa;
+  font-family: FreeSans;
   font-weight: 700; 
   font-size: 70px;
   border-radius: 10px;

@@ -22,6 +22,7 @@ class Profiles(db.Model):
   idd = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(1000), nullable=False)
   password = db.Column(db.String(1000), nullable=False)
+  diamonds = db.Column(db.String(1000), nullable = False)
   def __repr__(self):
     return '<ID %r>' % self.idd
 
@@ -43,10 +44,17 @@ def delac():
   register = 2
   return render_template('deleteacc.html', register=register)
 
-@app.route('/test', methods=['GET', 'POST'])
-def test():
-  return render_template('testxml.html')
-
+@app.route('/p',  methods=['GET', 'POST'])
+def sd():
+  if (not request.method == 'GET'):
+    request_data = request.get_json()
+    diam = request_data['dmonds']
+    iw = request_data['iw']
+    Profiles.query.order_by(Profiles.idd)[iw].update({'diamonds': diam})
+    db.session.commit()
+    return redirect()
+  else:
+    return redirect('/', code=302)
 @app.route('/play',  methods=['GET', 'POST'])
 def levelplay():
   if (not request.method == 'GET'):
@@ -62,10 +70,10 @@ def levelplay():
               idword = userlast[-1].idd
             except:
               idword = 0
-            new_user = Profiles(username=uname, password=pword)
+            new_user = Profiles(username=uname, password=pword, diamonds='[]')
             db.session.add(new_user)
             db.session.commit()
-            return render_template('lvl1.html', username=uname, idd=idword)
+            return render_template('lvl1.html', username=uname, idd=idword, diamonds='[]')
           else:
             return redirect('/register', code=302)
         except:
@@ -78,7 +86,8 @@ def levelplay():
             pword = sha1(request.form['passwords'].encode()).hexdigest()
             listquery = Profiles.query.order_by(Profiles.idd)[iw]
             if (listquery.password == pword and listquery.username == uname and not   listquery.password == None):
-              return render_template('lvl1.html', username=uname, idd=iw)
+              dia = listquery.diamonds
+              return render_template('lvl1.html', username=uname, idd=iw, diamonds=dia)
             else:
               return redirect('/login', code=302)
           except:
@@ -98,6 +107,8 @@ def levelplay():
                 return redirect('/delac', code=302)
             except:
               return redirect('/delac', code=302)
+          else:
+            return redirect('/', code=302)
     except:
       return redirect('/', code=302)
   else: 
@@ -107,6 +118,20 @@ def login():
   global register
   register = 0
   return render_template('login.html', register=register)
+
+@app.route('/playad', methods=['GET', 'POST'])
+def playad():
+  if (request.method == 'POST'):
+    request_data = request.get_json()
+    diam = request_data['dmonds']
+    iw = request_data['iw']
+    listquery = Profiles.query.order_by(Profiles.idd)[iw]
+    uname = listquery.username
+    listquery.diamonds = diam
+    db.session.commit()
+    return render_template('lvl1.html', username=uname, idd=iw, diamonds=diam)
+  else:
+    return redirect('/', code=302)
 
 @app.route('/keepl',  methods=['GET', 'POST'])
 def keepl():
