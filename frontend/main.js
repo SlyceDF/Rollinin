@@ -1,5 +1,12 @@
+var audio = new Audio('frontend/4.mp3');
+var audio = new Audio('frontend/5.mp3');
+var audio = new Audio('frontend/upgrade.mp3');
+var diama = []
+var elevlevel = undefined
+
 $('#retry').hide();
 $('#menu').show();
+$('#sd').show();
 $('#play').click(start);
 $('#prev').hide();
 var scene = new THREE.Scene();
@@ -195,6 +202,20 @@ class Ball {
 					}
 				}
 			});
+      world.forEach(v => {
+				if (v instanceof Diamond && this.landed) {
+					if (v.detect()) {
+            if (diam[level] != true && diama[level] != true){
+						let audio = new Audio('frontend/upgrade.mp3');
+						audio.play();
+            while (scene.getObjectByName('diamond') != undefined) {
+            scene.remove(scene.getObjectByName('diamond'))};
+            diama[level] = true;
+            };
+            this.last = 10;
+					}
+				}
+      });
 			world.forEach(v => {
 				if (v instanceof SlowBouncer && this.landed) {
 					if (v.detect()) {
@@ -449,6 +470,30 @@ class HighlowObstacle {
 			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
 			ball.mesh.position.z <= 0.5 &&
 			ball.mesh.position.y < this.mesh.position.y + 2
+		) return true;
+	}
+};
+class Diamond {
+  constructor(xpos, zpos) {
+    this.geometry = new THREE.OctahedronGeometry(0.5, 0);
+    this.material = new THREE.MeshPhongMaterial({ color: levelcolors[11] });
+    this.mesh = new THREE.Mesh(this.geometry, this.material);
+		this.edgesGeometry = new THREE.EdgesGeometry(this.geometry);
+		this.edgesMaterial = new THREE.LineBasicMaterial({ color:levelcolors[11] });
+		this.line = new THREE.LineSegments(this.edgesGeometry, this.edgesMaterial);
+		this.mesh.position.set(xpos, 1, zpos);
+		this.line.position.set(xpos, 1, zpos);
+		this.mesh.name = 'diamond';
+		this.line.name = 'level component';
+		scene.add(this.mesh);
+  }
+  	detect() {
+		if (
+			ball.mesh.position.x >= this.mesh.position.x - 0.5 &&
+			ball.mesh.position.x <= this.mesh.position.x + 0.5 &&
+			ball.mesh.position.z >= this.mesh.position.z - 0.5 &&
+			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
+			ball.mesh.position.z <= 0.5
 		) return true;
 	}
 };
@@ -574,6 +619,20 @@ class Ball {
 					}
 				}
 			});
+      world.forEach(v => {
+				if (v instanceof Diamond && this.landed) {
+					if (v.detect()) {
+            if (diam[level] != true && diama[level] != true){
+						let audio = new Audio('frontend/upgrade.mp3');
+						audio.play();
+            while (scene.getObjectByName('diamond') != undefined) {
+            scene.remove(scene.getObjectByName('diamond'))};
+            diama[level] = true;
+            };
+            this.last = 10;
+					}
+				}
+      });
 			world.forEach(v => {
 				if (v instanceof SlowBouncer && this.landed) {
 					if (v.detect()) {
@@ -831,10 +890,35 @@ class HighlowObstacle {
 		) return true;
 	}
 };
+class Diamond {
+  constructor(xpos, zpos) {
+    this.geometry = new THREE.OctahedronGeometry(0.5, 0);
+    this.material = new THREE.MeshPhongMaterial({ color: levelcolors[11] });
+    this.mesh = new THREE.Mesh(this.geometry, this.material);
+		this.edgesGeometry = new THREE.EdgesGeometry(this.geometry);
+		this.edgesMaterial = new THREE.LineBasicMaterial({ color:levelcolors[11] });
+		this.line = new THREE.LineSegments(this.edgesGeometry, this.edgesMaterial);
+		this.mesh.position.set(xpos, 1, zpos);
+		this.line.position.set(xpos, 1, zpos);
+		this.mesh.name = 'diamond';
+		this.line.name = 'level component';
+		scene.add(this.mesh);
+  }
+  	detect() {
+		if (
+			ball.mesh.position.x >= this.mesh.position.x - 0.5 &&
+			ball.mesh.position.x <= this.mesh.position.x + 0.5 &&
+			ball.mesh.position.z >= this.mesh.position.z - 0.5 &&
+			ball.mesh.position.z <= this.mesh.position.z + 0.5 &&
+			ball.mesh.position.z <= 0.5
+		) return true;
+	}
 }
+};
 function jumper() {
       world.forEach(v => {
-				if (v instanceof MatBouncer && ball.landed) {
+				if (v instanceof MatBouncer && ball.landed) 
+        {
 					if (v.detect()) {
 						ball.landed = false;
 						ball.speed.y = 0.5;
@@ -847,7 +931,8 @@ function jumper() {
 				}
 			});
       world.forEach(v => {
-				if (v instanceof MatsBouncer && ball.landed) {
+				if (v instanceof MatsBouncer && ball.landed) 
+        {
 					if (v.detect()) {
 						ball.landed = false;
 						ball.speed.y = 0.39;
@@ -871,7 +956,17 @@ function jumper() {
 function start(e) {
 	e.preventDefault();
 	if (!started) {
+    while (
+		(selectedObject = scene.getObjectByName('level component')) != undefined
+	) {
+		var selectedObject = scene.getObjectByName('level component');
+		scene.remove(selectedObject);
+	};
+	scene.remove(scene.getObjectByName('ball'));
+  loadLevel(level);
+    diama[level] = false;
 		started = true;
+    ball = new Ball();
 		ball.speed.z = -0.15;
 		$('#main').fadeOut(300);
 		$('#name').hide();
@@ -897,7 +992,7 @@ function start(e) {
 			}
 		});
 		$('#main').css('pointer-events', 'none');
-    if (level == 11) {
+    if (level == elevlevel) {
       elev = new Audio('frontend/11.ogg')
       elev.play()
     }
@@ -910,7 +1005,7 @@ function reset() {
 	ball.mesh.position.set(0, 0.6, 0);
 	ball.speed.y = 0;
 	ball.count2Lose = 0;
-  if (level == 11) {
+  if (level == elevlevel) {
     try {
       elev.pause();
       elev.currentTime = 0;
@@ -927,6 +1022,7 @@ function nextLevel() {
 		var selectedObject = scene.getObjectByName('level component');
 		scene.remove(selectedObject);
 	};
+	scene.remove(scene.getObjectByName('diamond'))
 	scene.remove(scene.getObjectByName('ball'))
 	world = [];
 	level++;
@@ -940,6 +1036,7 @@ function nextLevel() {
 	$('#prev').show();
 	$('#retry').hide();
   $('#menu').show();
+  $('#sd').show();
 	$('#play').show();
 	if (level == data.length - 1) {
 		$('#next').hide();
@@ -953,6 +1050,7 @@ function prevLevel() {
 		var selectedObject = scene.getObjectByName('level component');
 		scene.remove(selectedObject);
 	};
+  scene.remove(scene.getObjectByName('diamond'))
 	scene.remove(scene.getObjectByName('ball'))
 	world = [];
 	level--;
@@ -966,6 +1064,7 @@ function prevLevel() {
 	$('#next').show();
 	$('#retry').hide();
   $('#menu').show();
+  $('#sd').show();
 	$('#play').show();
 	if (level == 0) {
 		$('#prev').hide();
@@ -988,6 +1087,12 @@ function loadLevel(index) {
 				case 3:
 					world.push(new Mat(j - 2, -i));
 					world.push(new Obstacle(j - 2, -i));
+          break;
+        case 10:
+					world.push(new Mat(j - 2, -i));
+          if(diam[level] != true) {
+					world.push(new Diamond(j - 2, -i))
+          };
 					break;
         case 8:
 					world.push(new MatBouncer(j - 2, -i));
@@ -1023,12 +1128,27 @@ var render = function () {
 	percent = Math.ceil(
 		Math.abs(ball.mesh.position.z) / data[level].length * 100);
 	percent = percent > 100 ? 100 : percent;
+  if (percent >= 100 && diama[level] == true) {
+    diam[level] = true
+  };
 	$('#percent').html(percent + '%');
 	if (keystate[37]) ball.mesh.position.x -= 0.15;
 	if (keystate[39]) ball.mesh.position.x += 0.15;
 	reqId = requestAnimationFrame(render);
 };
 var reqId = requestAnimationFrame(render);
+
+//save diamonds
+
+function sd() {
+  var xhr = new XMLHttpRequest();
+xhr.open("POST", '/playad');
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send("{\"dmonds\":\"[" + diam.toString() + "]\", \"iw\":" + iw.toString() + "}");
+};
+function sdd() {
+  diam[level] = undefined
+}
 
 //controls
 
@@ -1038,11 +1158,12 @@ function gameover() {
 	$('#main').fadeIn(500);
 	$('#retry').show();
   $('#menu').show();
+  $('#sd').show();
 	$('#retry').click(start);
 	$('#score').show();
 	$('#score').html($('#percent').html());
 	$('#main').css('pointer-events', 'auto');
-  if (level == 11) {
+  if (level == elevlevel) {
     try {
       elev.pause();
       elev.currentTime = 0;

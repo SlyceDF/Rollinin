@@ -13,7 +13,8 @@ let idata = [
   'High Obstacle',
   'Medium Obstacle',
   'High Bouncemat',
-  'Low Bouncemat'
+  'Low Bouncemat',
+  'Diamond'
 ]
 
 document.body.querySelector('#cinfo').innerHTML = idata[1]
@@ -27,13 +28,13 @@ for (let i = 0; i < gridLength; i++) {
 $('#designer').scrollTop($('#designer')[0].scrollHeight);
 
 const colors = ['rgba(0, 0, 0, 0)', '#ffff00', '#ff00ff', '#00ddff',  '#0000ff', '#ff9500',
-'#00505c', '#0099b0', '#00ff08', '#b7ff00'];
+'#00505c', '#0099b0', '#00ff08', '#b7ff00', '#363636'];
 var color = 1;
 
 $('#color').on('touchstart mousedown', e => {
   e.preventDefault();
   e.handled = true;
-	color = (color + 1) % 10;
+	color = (color + 1) % 11;
 	$('#color').css('background-color', colors[color]);
   document.body.querySelector('#cinfo').innerHTML = idata[color];
 });
@@ -99,7 +100,8 @@ function up(e){
       0x00ffff, //Obstacle Color
       0x00ddff, //Obstacle Outline
       0x00ff08, //High Bouncemat Color
-      0xb7ff00  //Low Bouncemat Color
+      0xb7ff00,  //Low Bouncemat Color
+      0x363636 //Diamond Color
     ]
   </colors>
   <layout>
