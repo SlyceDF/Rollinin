@@ -1,6 +1,13 @@
+function audiogetsleep() {
 var audio = new Audio('frontend/4.mp3');
 audio = new Audio('frontend/5.mp3');
 audio = new Audio('frontend/upgrade.mp3');
+setTimeout(() => {
+audiogetsleep();
+},
+9000);
+}
+audiogetsleep()
 var diama = []
 var elevlevel = undefined
 var dinum = 0
