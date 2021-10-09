@@ -40,6 +40,7 @@ canvas {
   font-size: 4vw;
   font-family: Comfortaa;
   font-weight: 300;
+  text-align: right;
 }
 #play{
   width: 24vw;

@@ -9,7 +9,7 @@
 </head>
 <body id="body">
 	<div id="canvascontainer" onclick='jumper()'>
-		<div id="percentwrap"><span id="percent">0%</span> {{ username }}#{{ idd }}</div>
+    <div id="percentwrap"><span id="percent">0%</span> {{ username }}#{{ idd }} <div id="dlist"></div></div>
 	</div>
 	<div id="main">
 
@@ -26,6 +26,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
   var diam = eval({{ diamonds }})
+  let diamsavee = {{ diamonds }}
   var iw = {{ idd }}
 </script>
 	<script src="frontend/main.js"></script>
