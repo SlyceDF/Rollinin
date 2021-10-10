@@ -16,6 +16,17 @@ function sumArray(arr) {
     })
     return total;
 }
+function sumArrayi(arr) {
+    var total = 0;
+    arr.forEach(function(element){
+        if (element != undefined) {
+        total += element;
+        } else {
+        total += 0
+        }
+    })
+    return total;
+}
 
 $('#retry').hide();
 $('#menu').show();
@@ -1172,6 +1183,9 @@ var render = function () {
     document.body.querySelector('#sp').innerHTML = '↉'
   };
   dinum = sumArray(diam);
+  lnuma = sumArrayi(maxpercent);
+  lnumaa = Math.floor(lnuma / 13);
+  lnum = Math.floor(lnuma / 100);
   if (diam[level] != undefined) {
     getdi = + diam[level]
   } else {
@@ -1187,6 +1201,7 @@ var render = function () {
   };
   document.body.querySelector('#dlist').innerHTML = dinum.toString() + ' ❖' + thislevel;
   document.body.querySelector('#blist').innerHTML = maxpercent[level].toString() + '% BEST';
+  document.body.querySelector('#llist').innerHTML = lnum.toString() + '/' + data.length.toString() + ' done (' + lnumaa.toString() + '%)';
 	renderer.render(scene, camera);
 	ball.update();
 	percent = Math.ceil(
