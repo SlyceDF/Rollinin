@@ -70,7 +70,7 @@ def levelplay():
             new_user = Profiles(username=uname, password=pword, diamonds='[]', maxpercent='[]')
             db.session.add(new_user)
             db.session.flush()
-            idword = new_user.idd
+            idword = new_user.idd - 1
             db.session.commit()
             register = 0
             return render_template('lvl1.html', username=uname, idd=idword, diamonds='[]', maxpercent='[]')
