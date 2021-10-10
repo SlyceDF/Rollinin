@@ -1,10 +1,22 @@
 var audio = new Audio('frontend/4.mp3');
 audio = new Audio('frontend/5.mp3');
 audio = new Audio('frontend/upgrade.mp3');
+var leveldone = []
 var diama = []
 var elevlevel = undefined
 var dinum = 0
 var diamsave = eval(diamsavee)
+function toBoolean(a) {
+  if (a === 0) {
+    return false
+  } else {
+    if (a === 1) {
+      return true
+    } else {
+      return undefined
+    }
+  }
+};
 function sumArray(arr) {
     var total = 0;
     arr.forEach(function(element){
@@ -1172,6 +1184,9 @@ function arraysEqual(a, b) {
 }
 //Loop function
 var render = function () {
+  for (let i = 0; i<=data.length; i++) {
+    leveldone[i] = toBoolean(maxpercent[i]/100);
+  };
   if (arraysEqual(diam, diamsave)) {
     document.body.querySelector('#sd').innerHTML = '◆'
   } else {
@@ -1185,7 +1200,6 @@ var render = function () {
   dinum = sumArray(diam);
   lnuma = sumArrayi(maxpercent);
   lnumaa = Math.floor(lnuma / data.length);
-  lnum = Math.floor(lnuma / 100);
   if (diam[level] != undefined) {
     getdi = + diam[level]
   } else {
@@ -1201,7 +1215,7 @@ var render = function () {
   };
   document.body.querySelector('#dlist').innerHTML = dinum.toString() + ' ❖' + thislevel;
   document.body.querySelector('#blist').innerHTML = maxpercent[level].toString() + '% BEST';
-  document.body.querySelector('#llist').innerHTML = lnum.toString() + '/' + data.length.toString() + ' done (' + lnumaa.toString() + '%)';
+  document.body.querySelector('#llist').innerHTML = sumArray(leveldone).toString() + '/' + data.length.toString() + ' done (' + lnumaa.toString() + '%)';
 	renderer.render(scene, camera);
 	ball.update();
 	percent = Math.ceil(

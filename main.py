@@ -66,7 +66,7 @@ def levelplay():
           uname = request.form['usernames']
           pword = sha1(request.form['passwords'].encode()).hexdigest()
           rpword = sha1(request.form['rpasswords'].encode()).hexdigest()
-          if (pword == rpword):
+          if (pword == rpword and not pword == '' and not uname == ''):
             new_user = Profiles(username=uname, password=pword, diamonds='[]', maxpercent='[]')
             db.session.add(new_user)
             db.session.flush()
