@@ -80,6 +80,12 @@ for (let i = 0; i<=data.length; i++) {
     diam[i] = diam[i];
 };
 for (let i = 0; i<=data.length; i++) {
+    maxpercent[i] = maxpercent[i];
+};
+for (let i = 0; i<=data.length; i++) {
+    maxpersave[i] = maxpersave[i];
+};
+for (let i = 0; i<=data.length; i++) {
     diamsave[i] = diamsave[i];
 };
 var renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -1159,7 +1165,12 @@ var render = function () {
     document.body.querySelector('#sd').innerHTML = '◆'
   } else {
     document.body.querySelector('#sd').innerHTML = '◈'
-  }
+  };
+  if (arraysEqual(maxpercent, maxpersave)) {
+    document.body.querySelector('#sp').innerHTML = '%'
+  } else {
+    document.body.querySelector('#sp').innerHTML = '↉'
+  };
   dinum = sumArray(diam);
   if (diam[level] != undefined) {
     getdi = + diam[level]
@@ -1171,7 +1182,10 @@ var render = function () {
   } else {
     thislevel = ''
   };
-  document.body.querySelector('#dlist').innerHTML = dinum.toString() + ' ❖' + thislevel
+  if (maxpercent[level] == undefined) {
+    maxpercent[level] = 0
+  };
+  document.body.querySelector('#dlist').innerHTML = dinum.toString() + ' ❖' + thislevel + '<br/>' + maxpercent[level].toString() + '% BEST'
 	renderer.render(scene, camera);
 	ball.update();
 	percent = Math.ceil(
@@ -1179,6 +1193,9 @@ var render = function () {
 	percent = percent > 100 ? 100 : percent;
   if (percent >= 100 && diama[level] == true) {
     diam[level] = true
+  };
+  if (maxpercent[level] < percent) {
+    maxpercent[level] = percent;
   };
 	$('#percent').html(percent + '%');
 	if (keystate[37]) ball.mesh.position.x -= 0.15;
@@ -1196,14 +1213,30 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send("{\"dmonds\":\"[" + diam.toString() + "]\", \"iw\":" + iw.toString() + "}");
 for (let i = 0; i<=data.length; i++) {
     diamsave[i] = diam[i];
-  };
+};
 for (let i = 0; i<=data.length; i++) {
     diam[i] = diam[i];
   }
 };
 function sdd() {
   diam[level] = undefined
-}
+};
+function sp() {
+  var xhr = new XMLHttpRequest();
+xhr.open("POST", '/playadsave');
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send("{\"maxpercent\":\"[" + maxpercent.toString() + "]\", \"iw\":" + iw.toString() + "}");
+for (let i = 0; i<=data.length; i++) {
+    maxpersave[i] = maxpercent[i];
+};
+for (let i = 0; i<=data.length; i++) {
+    maxpercent[i] = maxpercent[i];
+  }
+};
+function spd() {
+  maxpercent[level] = undefined
+};
+
 
 //controls
 

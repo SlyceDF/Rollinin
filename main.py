@@ -23,6 +23,7 @@ class Profiles(db.Model):
   username = db.Column(db.String(1000), nullable=False)
   password = db.Column(db.String(1000), nullable=False)
   diamonds = db.Column(db.String(1000), nullable = False)
+  maxpercent = db.Column(db.String(1000), nullable = False)
   def __repr__(self):
     return '<ID %r>' % self.idd
 
@@ -57,6 +58,7 @@ def sd():
     return redirect('/', code=302)
 @app.route('/play',  methods=['GET', 'POST'])
 def levelplay():
+  global register
   if (not request.method == 'GET'):
     try: 
       if (register == 1):
@@ -70,10 +72,11 @@ def levelplay():
               idword = userlast[-1].idd
             except:
               idword = 0
-            new_user = Profiles(username=uname, password=pword, diamonds='[]')
+            new_user = Profiles(username=uname, password=pword, diamonds='[]', maxpercent='[]')
             db.session.add(new_user)
             db.session.commit()
-            return render_template('lvl1.html', username=uname, idd=idword, diamonds='[]')
+            register = 0
+            return render_template('lvl1.html', username=uname, idd=idword, diamonds='[]', maxpercent='[]')
           else:
             return redirect('/register', code=302)
         except:
@@ -87,7 +90,8 @@ def levelplay():
             listquery = Profiles.query.order_by(Profiles.idd)[iw]
             if (listquery.password == pword and listquery.username == uname and not   listquery.password == None):
               dia = listquery.diamonds
-              return render_template('lvl1.html', username=uname, idd=iw, diamonds=dia)
+              max = listquery.maxpercent
+              return render_template('lvl1.html', username=uname, idd=iw, diamonds=dia, maxpercent = max)
             else:
               return redirect('/login', code=302)
           except:
@@ -125,11 +129,29 @@ def playad():
     request_data = request.get_json()
     diam = request_data['dmonds']
     iw = request_data['iw']
-    listquery = Profiles.query.order_by(Profiles.idd)[iw]
-    uname = listquery.username
-    listquery.diamonds = diam
-    db.session.commit()
+    try:
+      listquery = Profiles.query.order_by(Profiles.idd)[iw]
+      uname = listquery.username
+      listquery.diamonds = diam
+      db.session.commit()
+    except: pass
     return render_template('lvl1.html', username=uname, idd=iw, diamonds=diam)
+  else:
+    return redirect('/', code=302)
+@app.route('/playadsave', methods=['GET', 'POST'])
+def playadsave():
+  if (request.method == 'POST'):
+    request_data = request.get_json()
+    diam = request_data['maxpercent']
+    iw = request_data['iw']
+    try:
+      listquery = Profiles.query.order_by(Profiles.idd)[iw]
+      uname = listquery.username
+      listquery.maxpercent = diam
+      db.session.commit()
+    except:
+      pass
+    return render_template('lvl1.html', username=uname, idd=iw, maxpercent=diam)
   else:
     return redirect('/', code=302)
 

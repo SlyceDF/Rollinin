@@ -74,6 +74,22 @@ canvas {
   font-size: 6vw;
   border: none;
 }
+#sp{
+  width: 12vw;
+  height: 6vw;
+  left: 1.2vw;
+  top: 22.8vw;
+  font-size: 6vw;
+  border: none;
+}
+#spd{
+  width: 12vw;
+  height: 6vw;
+  left: 1.2vw;
+  top: 30vw;
+  font-size: 6vw;
+  border: none;
+}
 #retry{
   width: 24vw;
   height: 12vw;
