@@ -42,6 +42,9 @@ canvas {
   font-weight: 300;
   text-align: right;
 }
+#blist{
+  margin-top: 1.5vw
+}
 #play{
   width: 24vw;
   height: 12vw;

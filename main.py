@@ -67,13 +67,10 @@ def levelplay():
           pword = sha1(request.form['passwords'].encode()).hexdigest()
           rpword = sha1(request.form['rpasswords'].encode()).hexdigest()
           if (pword == rpword):
-            userlast = Profiles.query.order_by(Profiles.idd)
-            try:
-              idword = userlast[-1].idd
-            except:
-              idword = 0
             new_user = Profiles(username=uname, password=pword, diamonds='[]', maxpercent='[]')
             db.session.add(new_user)
+            db.session.flush()
+            idword = new_user.idd
             db.session.commit()
             register = 0
             return render_template('lvl1.html', username=uname, idd=idword, diamonds='[]', maxpercent='[]')

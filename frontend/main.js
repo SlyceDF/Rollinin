@@ -1185,7 +1185,8 @@ var render = function () {
   if (maxpercent[level] == undefined) {
     maxpercent[level] = 0
   };
-  document.body.querySelector('#dlist').innerHTML = dinum.toString() + ' ❖' + thislevel + '<br/>' + maxpercent[level].toString() + '% BEST'
+  document.body.querySelector('#dlist').innerHTML = dinum.toString() + ' ❖' + thislevel;
+  document.body.querySelector('#blist').innerHTML = maxpercent[level].toString() + '% BEST';
 	renderer.render(scene, camera);
 	ball.update();
 	percent = Math.ceil(
