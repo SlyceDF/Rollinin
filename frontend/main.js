@@ -1184,7 +1184,7 @@ var render = function () {
   };
   dinum = sumArray(diam);
   lnuma = sumArrayi(maxpercent);
-  lnumaa = Math.floor(lnuma / 13);
+  lnumaa = Math.floor(lnuma / data.length);
   lnum = Math.floor(lnuma / 100);
   if (diam[level] != undefined) {
     getdi = + diam[level]
