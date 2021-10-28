@@ -39,6 +39,7 @@ function sumArrayi(arr) {
     })
     return total;
 }
+const a = "10"
 
 $('#retry').hide();
 $('#menu').show();
@@ -1073,7 +1074,8 @@ function nextLevel() {
 		var selectedObject = scene.getObjectByName('level component');
 		scene.remove(selectedObject);
 	};
-	scene.remove(scene.getObjectByName('diamond'))
+  while (scene.getObjectByName('diamond') != undefined) {
+  scene.remove(scene.getObjectByName('diamond'))};
 	scene.remove(scene.getObjectByName('ball'))
 	world = [];
 	level++;
@@ -1101,7 +1103,8 @@ function prevLevel() {
 		var selectedObject = scene.getObjectByName('level component');
 		scene.remove(selectedObject);
 	};
-  scene.remove(scene.getObjectByName('diamond'))
+  while (scene.getObjectByName('diamond') != undefined) {
+  scene.remove(scene.getObjectByName('diamond'))};
 	scene.remove(scene.getObjectByName('ball'))
 	world = [];
 	level--;
@@ -1139,7 +1142,7 @@ function loadLevel(index) {
 					world.push(new Mat(j - 2, -i));
 					world.push(new Obstacle(j - 2, -i));
           break;
-        case 10:
+        case "10":
 					world.push(new Mat(j - 2, -i));
           if(diam[level] != true) {
 					world.push(new Diamond(j - 2, -i))

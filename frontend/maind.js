@@ -1,6 +1,8 @@
 
 const grid = $('#grid');
 
+let colorx = 0
+
 let gridLength = 30;
 let mouseDown = false;
 let idata = [
@@ -35,6 +37,11 @@ $('#color').on('touchstart mousedown', e => {
   e.preventDefault();
   e.handled = true;
 	color = (color + 1) % 11;
+  if (color == 10) {
+    colorx = "a"
+  } else {
+    colorx = color
+  }
 	$('#color').css('background-color', colors[color]);
   document.body.querySelector('#cinfo').innerHTML = idata[color];
 });
@@ -71,7 +78,7 @@ $("div#designer").on('mouseup touchend', up)
 function down(e){
   const x = $(this).index();
 	const y = gridLength - 1 - $(this).parent().index();
-	data[y][x] = color;
+	data[y][x] = colorx;
 	$(this).css('background-color', colors[color]);
 	mouseDown = true;
 }
@@ -80,7 +87,7 @@ function move(e){
   if (mouseDown) {
 		const x = $(this).index();
 		const y = gridLength - 1 - $(this).parent().index();
-		data[y][x] = color;
+		data[y][x] = colorx;
 		$(this).css('background-color', colors[color]);
 	}
 }

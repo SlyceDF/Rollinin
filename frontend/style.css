@@ -207,7 +207,7 @@ canvas {
   margin-top: 2vw;
   margin-bottom: 2vw;
   text-decoration: none;
-  font-size: 3vh;
+  font-size: 5vh;
   transition-duration: 200ms;
 }
 .bfw::placeholder {
@@ -231,7 +231,7 @@ canvas {
   font-family: Comfortaa;
   margin: 10px;
   text-decoration: none;
-  font-size: 3vh;
+  font-size: 5vh;
   transition-duration: 200ms;
 }
 .bfo:hover {

@@ -170,7 +170,15 @@ def keepaliv():
       return redirect('/login', code=302) 
   else:
     return redirect('/login', code=302)
-    
+#errorpages
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('500.html'), 500
+#run
 def run():
   app.run(host='0.0.0.0',port=8080)
 
