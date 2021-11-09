@@ -98,7 +98,7 @@ def leveldel():
   if (not request.method == 'GET'):
     uname = request.form['usernames']
     iw = int(request.form['ids'])
-    pword = sha1(request.form['passwords'].encode()).hexdigest()
+    pword =request.form['passwords']
     uuid = request.form['uuids']
     user = Profiles.query.order_by(Profiles.idd)[iw]
     if (user.password == sha1(pword.encode()).hexdigest() and user.username == uname and isUUID(uuid)):
