@@ -22,16 +22,36 @@
         <div id="buttonwrap">
           <button id="add">Add Row</button>
           <button id="remove">Remove Row</button>
-          <button id="menu">Menu</button>
+          <button id="menu">Back</button>
+        </div>
+        <div id="buttonwrap1">
+          <input id="id" placeholder="Your ID" type="text">
+          <input id="username" placeholder="Your Username" type="email">
+          <input id="password" placeholder="Your Password" type="password">
+        </div>
+        <button id="post" onclick="post()">Post Level</button>
+        <div id="colordiv">
+          <input type=text placeholder="Background" id="backgroundColor">
+          <input type=text placeholder="Ball" id="ballColor">
+          <input type=text placeholder="Mat" id="matColor">
+          <input type=text placeholder="Mat Outline" id="matOutline">
+          <input type=text placeholder="Invisible Mat" id="invisibleMatOutline">
+          <input type=text placeholder="High Bouncer" id="highBouncerColor">
+          <input type=text placeholder="Low Bouncer"id="lowBouncerColor">
+          <input type=text placeholder="Obstacle" id="obstacleColor">
+          <input type=text placeholder="Obstacle Outline" id="obstacleOutline">
+          <input type=text placeholder="High Bouncemat" id="highBouncematColor">
+          <input type=text placeholder="Low Bouncemat" id="lowBouncematColor">
+          <input type=text placeholder="Diamond" id="diamondColor">
         </div>
       </div>
       <div>
         <ol>
           <li>Click the circle to change the tile type.</li><br/>
           <li>Click or drag the squares to change their tilestate. The squares represent the tiles of the game.</li><br/>
-          <li>Copy all the text inside the text box below.</li><br/>
-          <li>Go to the SkyRoll repl and add the content to level data.
+          <li>Enter your Skyroll credentials and post the level. Remember the UUID!</li><br/>
           </li>
+          <p id="error"></p>
         </ol>
         <textarea readonly id="output"></textarea>
       </div>

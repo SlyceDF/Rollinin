@@ -1,5 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
 
+button {
+  width: 100px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+#post {
+  width: 100px;
+  height: 66px;
+}
+
+#colordiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+  height: 66px;
+  overflow: scroll;
+}
+
+input {
+  width: 200px;
+  height: 16px;
+  margin-right: 5px;
+}
+
 #designer{
   position: fixed;
   left: 0;
@@ -16,6 +42,12 @@
   width: 150px;
 }
 #buttonwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+}
+#buttonwrap1 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +86,7 @@ td{
   border-radius: 30px;
   display: inline-block;
   border: 1px solid;
-  background-color: #ffff00;
+  background-color: #00000000;
   font-size: 15px;
   margin-bottom: 5px;
 }

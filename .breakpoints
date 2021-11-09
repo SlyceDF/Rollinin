@@ -12,8 +12,24 @@
       {
         "id": "4130b54d-5b2a-45d6-b7b8-886638283e8e",
         "line": 1373,
-        "version": 904,
+        "version": 1076,
         "index": 30902
+      }
+    ],
+    "frontend/maind.js": [
+      {
+        "id": "ee2df98b-5ad6-4537-b64d-6d5781584e0b",
+        "line": 218,
+        "version": 2873,
+        "index": 6735
+      }
+    ],
+    "frontend/play2.html": [
+      {
+        "id": "e558859c-eb57-4535-a0f6-39a2f3d22796",
+        "line": 34,
+        "version": 109,
+        "index": 840
       }
     ]
   }

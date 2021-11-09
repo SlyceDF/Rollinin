@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Skyroll</title>
+	<link rel="stylesheet" href="frontend/style.css"/>
+      <link rel="icon" type="image/x-icon" href="frontend/favicon.ico"/>
+</head>
+<body id="body">
+	<div id="canvascontainer" onclick='jumper()'>
+    <div id="percentwrap">
+      <div id="llist">
+       Level UUID:<br/> {{ uuid }} 
+      </div>
+      <div id="percentlist">
+      <span id="percent">
+        0%
+      </span>
+      </div>
+      <div id="dlist">
+        
+      </div>
+      <div id="blist">
+
+      </div>
+    </div>
+	</div>
+	<div id="main">
+
+		<div id="score"></div>
+		<div class="button" id="play">&#9654;</div>
+		<div class="button" id="retry">&#8634;</div>
+    <a href="/onlinelevel" class="button" id="menu" >&#8620;</a>
+	</div>
+	<script src="https://threejs.org/build/three.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  let uuid = '{{ uuid }}';
+</script>
+	<script src="frontend/mainon.js"></script>
+</body>
+</html>

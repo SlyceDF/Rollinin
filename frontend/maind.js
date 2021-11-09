@@ -1,5 +1,106 @@
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
+function getcolor(color) {
+  try {
+    if (eval(document.getElementById(color).value) < 0xffffff+1 && eval(document.getElementById(color).value) >= 0) {
+      return eval(document.getElementById(color).value);
+    } else {
+      return 0;
+    };
+  } catch (Error) {
+      return 0;
+  };
+};
+let levec = [
+      getcolor('backgroundColor'), //Background Color
+      getcolor('ballColor'), //Ball Color
+      getcolor('matColor'), //Mat Color
+      getcolor('matOutline'), //Mat Outline
+      getcolor('invisibleMatOutline'), //Invisible Mat Outline
+      getcolor('highBouncerColor'), //High Bouncer Color
+      getcolor('lowBouncerColor'), //Low Bouncer Color
+      getcolor('obstacleColor'), //Obstacle Color
+      getcolor('obstacleOutline'), //Obstacle Outline
+      getcolor('highBouncematColor'), //High Bouncemat Color
+      getcolor('lowBouncematColor'),  //Low Bouncemat Color
+      getcolor('diamondColor') //Diamond Color
+    ];
+
+let str = ''
+
+let uuid = uuidv4();
 
 const grid = $('#grid');
+
+let strstart = `<level \'id\'=\'`+ uuid + `\' \'class\'=\'Unnamed\'>
+  <colors>
+    [\n` + levec.join(",\n") + `\n]
+  </colors>
+  <layout>
+    [
+`;
+
+function uchange() {
+  if (document.getElementById('username').value != '') {
+    levec = [
+      getcolor('backgroundColor'), //Background Color
+      getcolor('ballColor'), //Ball Color
+      getcolor('matColor'), //Mat Color
+      getcolor('matOutline'), //Mat Outline
+      getcolor('invisibleMatOutline'), //Invisible Mat Outline
+      getcolor('highBouncerColor'), //High Bouncer Color
+      getcolor('lowBouncerColor'), //Low Bouncer Color
+      getcolor('obstacleColor'), //Obstacle Color
+      getcolor('obstacleOutline'), //Obstacle Outline
+      getcolor('highBouncematColor'), //High Bouncemat Color
+      getcolor('lowBouncematColor'),  //Low Bouncemat Color
+      getcolor('diamondColor') //Diamond Color
+    ];
+  strstart = `<level \'id\'=\'`+ uuid + `\' \'class\'=\'` + document.getElementById('username').value + `\'>
+  <colors>
+[\n` + levec.join(",\n").trimRight(2) + `\n]
+  </colors>
+  <layout>
+    [
+`;
+} else {levec = [
+      getcolor('backgroundColor'), //Background Color
+      getcolor('ballColor'), //Ball Color
+      getcolor('matColor'), //Mat Color
+      getcolor('matOutline'), //Mat Outline
+      getcolor('invisibleMatOutline'), //Invisible Mat Outline
+      getcolor('highBouncerColor'), //High Bouncer Color
+      getcolor('lowBouncerColor'), //Low Bouncer Color
+      getcolor('obstacleColor'), //Obstacle Color
+      getcolor('obstacleOutline'), //Obstacle Outline
+      getcolor('highBouncematColor'), //High Bouncemat Color
+      getcolor('lowBouncematColor'),  //Low Bouncemat Color
+      getcolor('diamondColor') //Diamond Color
+    ];
+   strstart = `<level \'id\'=\'`+ uuid + `\' \'class\'=\'` + 'Unnamed' + `\'>
+  <colors>
+[\n` + levec.join(",\n").trimRight(2) + `\n]
+  </colors>
+  <layout>
+    [
+`;
+};
+  $("#output").val(strstart + str + `
+    ]
+  </layout>
+</level>`
+    );
+setTimeout(() => {
+  uchange();
+  },
+  100);
+};
+
+uchange();
 
 let colorx = 0
 
@@ -19,7 +120,7 @@ let idata = [
   'Diamond'
 ]
 
-document.body.querySelector('#cinfo').innerHTML = idata[1]
+document.body.querySelector('#cinfo').innerHTML = idata[0]
 
 const data = [];
 for (let i = 0; i < gridLength; i++) {
@@ -31,7 +132,7 @@ $('#designer').scrollTop($('#designer')[0].scrollHeight);
 
 const colors = ['rgba(0, 0, 0, 0)', '#ffff00', '#ff00ff', '#00ddff',  '#0000ff', '#ff9500',
 '#00505c', '#0099b0', '#00ff08', '#b7ff00', '#363636'];
-var color = 1;
+var color = 0;
 
 $('#color').on('touchstart mousedown', e => {
   e.preventDefault();
@@ -57,7 +158,7 @@ $('#add').on('touchstart mousedown', e => {
 $('#menu').on('touchstart mousedown', e => {
   e.preventDefault();
   e.handled = true;
-  window.location.href = "/";
+  window.location.href = "/onlineplay";
 });
 
 $('#remove').on('touchstart mousedown', e => {
@@ -94,32 +195,24 @@ function move(e){
 function up(e){
   e.preventDefault();
   mouseDown = false;
-  let str = `<level>
-  <colors>
-    [
-      0xaaaaaa, //Background Color
-      0xff1111, //Ball Color
-      0xffff00, //Mat Color
-      0xcccc00, //Mat Outline
-      0xff9500, //Invisible Mat Outline
-      0xff00ff, //High Bouncer Color
-      0x0000ff, //Low Bouncer Color
-      0x00ffff, //Obstacle Color
-      0x00ddff, //Obstacle Outline
-      0x00ff08, //High Bouncemat Color
-      0xb7ff00,  //Low Bouncemat Color
-      0x363636 //Diamond Color
-    ]
-  </colors>
-  <layout>
-    [
-`;
+  str = '';
   data.forEach((r, i) => 
     str += "      [" + r.join(", ") + "]" + (i == data.length - 1? "": ",\n")
   );
-  $("#output").val(str + `
-    ]
-  </layout>
-</level>`
-    );
 }
+function post() {
+  if (str != '') { 
+  var xhr = new XMLHttpRequest();
+xhr.open("POST", '/postlevel');
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send("{\"uuid\": \"" + uuid + "\", \"id\": " + document.getElementById('id').value + ", \"username\": \"" + document.getElementById('username').value + "\", \"password\": \"" + document.getElementById('password').value + "\", \"colors\": " + ("\"[" + levec.join(", ")).trimRight(1) + "]\"" + ", \"layout\": " + ("\"[[" + data.map(i => i.join(", ")).join("], [")).trimRight(1) + "]]\"" + "}");
+  document.getElementById('error').innerHTML = 'Success! If your credentials were entered correctly, the level UUID is <b>' + uuid + '</b>';
+  uuid = uuidv4();
+} else {
+  document.getElementById('error').innerHTML = 'Error! Level is empty';
+};
+  setTimeout(() => {
+  document.getElementById('error').innerHTML = '';
+  },
+  10000);
+};

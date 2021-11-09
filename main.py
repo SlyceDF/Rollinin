@@ -7,6 +7,8 @@ exec(open("hashlib.py").read())
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from threading import Thread
+from uuid0 import UUID
+import xml.etree.ElementTree as ET
 
 app = Flask(  # Create a flask app
 	__name__,
@@ -29,6 +31,13 @@ class Profiles(db.Model):
 
 #db.create_all()
 
+def isUUID(value):
+    try:
+        UUID(value, version=4)
+        return True
+    except ValueError:
+        return False
+
 @app.route('/edit',  methods=['GET', 'POST'])
 def designer():
   return render_template('design.html')
@@ -38,6 +47,69 @@ def register():
   global register
   register = 1
   return render_template('register.html', register=register)
+
+@app.route('/onlineplay', methods=['GET', 'POST'])
+def onlineplay():
+  return render_template('online.html')
+
+@app.route('/postlevel', methods=['GET', 'POST'])
+def postlevel():
+  if (not request.method == 'GET'):
+    x = 'none'
+    request_data = request.get_json()
+    uuid = request_data['uuid']
+    layout = request_data['layout']
+    colors = request_data['colors']
+    iw = request_data['id']
+    username = request_data['username']
+    password = request_data['password']
+    user = Profiles.query.order_by(Profiles.idd)[iw]
+    if (user.password == sha1(password.encode()).hexdigest() and user.username == username and isUUID(uuid)):
+      tree = ET.parse('frontend/public.xml')
+      root = tree.getroot()
+      for level in root.findall('level'):
+        if (level.attrib['id'] == uuid):
+          x = level
+      if(x=='none'):
+        level = ET.SubElement(root, 'level', {'id': uuid, 'class': username})
+        color = ET.SubElement(level, 'colors')
+        color.text = colors   
+        laydata = ET.SubElement(level, 'layout')
+        laydata.text = layout
+        tree.write('frontend/public.xml') 
+    return redirect('/', code=302)
+
+@app.route('/delevel', methods=['GET', 'POST'])
+def delevel():
+  return render_template('delevel.html') 
+
+@app.route('/onlinelevel', methods=['GET', 'POST'])
+def onlinelevel():
+  return render_template('onlinelevel.html') 
+
+@app.route('/play2',  methods=['GET', 'POST'])
+def play2():
+  if (not request.method == 'GET'):
+    uuid = request.form['uuids']
+    return render_template('play2.html', uuid=uuid)
+
+@app.route('/leveldel',  methods=['GET', 'POST'])
+def leveldel():
+  if (not request.method == 'GET'):
+    uname = request.form['usernames']
+    iw = int(request.form['ids'])
+    pword = sha1(request.form['passwords'].encode()).hexdigest()
+    uuid = request.form['uuids']
+    user = Profiles.query.order_by(Profiles.idd)[iw]
+    if (user.password == sha1(pword.encode()).hexdigest() and user.username == uname and isUUID(uuid)):
+      tree = ET.parse('frontend/public.xml')
+      root = tree.getroot()
+      for level in root.findall('level'):
+        if (level.attrib['id'] == uuid):
+          root.remove(level)
+      tree.write('frontend/public.xml')
+  return redirect('/delevel', code=302)
+
 
 @app.route('/delac', methods=['GET', 'POST'])
 def delac():
