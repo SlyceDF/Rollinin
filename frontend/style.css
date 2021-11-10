@@ -72,6 +72,15 @@ canvas {
   border: none;
   padding-bottom: 1vw;
 }
+#ad{
+  width: 12vw;
+  height: 6vw;
+  left: 1.2vw;
+  top: 8.4vw;
+  font-size: 6vw;
+  border: none;
+  padding-bottom: 0;
+}
 #sdd{
   width: 12vw;
   height: 6vw;

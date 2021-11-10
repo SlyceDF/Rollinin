@@ -1054,6 +1054,30 @@ function reset() {
     }
   }
 }
+function relevel() {
+	percent = 0;
+	while (
+		(selectedObject = scene.getObjectByName('level component')) != undefined
+	) {
+		var selectedObject = scene.getObjectByName('level component');
+		scene.remove(selectedObject);
+	};
+  while (scene.getObjectByName('diamond') != undefined) {
+  scene.remove(scene.getObjectByName('diamond'))};
+	scene.remove(scene.getObjectByName('ball'))
+	world = [];
+	renderer.setClearColor(levelcolors[0], 1);
+	objectUpdate();
+	loadLevel(level); 
+	ball = new Ball();
+	reset();
+	$('#score').hide();
+	$('#prev').show();
+	$('#retry').hide();
+  $('#menu').show();
+  $('#sd').show();
+	$('#play').show();
+}
 // Da things
 var light = new THREE.HemisphereLight(0xffffff, 0x080820, 1);
 scene.add(light);
@@ -1165,6 +1189,13 @@ function gameover() {
   }
 
 }
+
+function sdd() {
+  diam = 0
+};
+function spd() {
+  maxpercent = 0
+};
 
 
 //CONTROLS
