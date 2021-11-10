@@ -250,3 +250,8 @@ canvas {
   background-color: rgba(185, 99, 0, 0.36);
   border-radius: 1vw;
 }
+
+.rrr {
+  height: 15vh !important;
+  text-align: center;
+}

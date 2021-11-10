@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Skyroll</title>
+	<link rel="stylesheet" href="frontend/style.css"/>
+      <link rel="icon" type="image/x-icon" href="frontend/favicon.ico"/>
+</head>
+<body id="body">
+	<div id="canvascontainer" onclick='jumper()'>
+    <div id="percentwrap">
+      <div id="llist">
+
+      </div>
+      <div id="percentlist">
+      <span id="percent">
+        0%
+      </span>
+      Anonymous
+      </div>
+      <div id="dlist">
+        
+      </div>
+      <div id="blist">
+
+      </div>
+    </div>
+	</div>
+	<div id="main">
+
+		<div id="score"></div>
+		<div class="button" id="play">&#9654;</div>
+		<div class="button" id="retry">&#8634;</div>
+    <a href="/" class="button" id="menu" >&#8620;</a>
+		<div class="button" style="text-decoration: none" id="next" onClick="nextLevel()" href="lvl2.html">&#9654;&#9654;</div>
+		<div class="button" style="text-decoration: none" id="prev" onClick="prevLevel()">&#9664;&#9664;</div>
+	</div>
+	<script src="https://threejs.org/build/three.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  var diam = []
+  let diamsavee = []
+  var maxpercent = []
+  let maxpersave = []
+</script>
+	<script src="frontend/mainan.js"></script>
+</body>
+</html>

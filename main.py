@@ -71,7 +71,7 @@ def postlevel():
         if (level.attrib['id'] == uuid):
           x = level
       if(x=='none'):
-        level = ET.SubElement(root, 'level', {'id': uuid, 'class': username})
+        level = ET.SubElement(root, 'level', {'id': uuid, 'author': username})
         color = ET.SubElement(level, 'colors')
         color.text = colors   
         laydata = ET.SubElement(level, 'layout')
@@ -83,15 +83,35 @@ def postlevel():
 def delevel():
   return render_template('delevel.html') 
 
+@app.route('/playan', methods=['GET', 'POST'])
+def playan():
+  return render_template('playan.html') 
+
 @app.route('/onlinelevel', methods=['GET', 'POST'])
 def onlinelevel():
   return render_template('onlinelevel.html') 
+
+@app.route('/searchlevel', methods=['GET', 'POST'])
+def searchlevel():
+  return render_template('searchlevel.html') 
 
 @app.route('/play2',  methods=['GET', 'POST'])
 def play2():
   if (not request.method == 'GET'):
     uuid = request.form['uuids']
     return render_template('play2.html', uuid=uuid)
+
+@app.route('/search',  methods=['GET', 'POST'])
+def search():
+  if (not request.method == 'GET'):
+    search = []
+    author = request.form['uuids']
+    tree = ET.parse('frontend/public.xml')
+    root = tree.getroot()
+    for level in root.findall('level'):
+        if (level.attrib['author'] == author):
+          search.append(level.attrib['id'])
+    return render_template('search.html', searchresults=search)
 
 @app.route('/leveldel',  methods=['GET', 'POST'])
 def leveldel():
