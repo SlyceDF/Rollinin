@@ -36,7 +36,7 @@ let uuid = uuidv4();
 
 const grid = $('#grid');
 
-let strstart = `<level \'id\'=\'`+ uuid + `\' \'class\'=\'Unnamed\'>
+let strstart = `<level \'id\'=\'`+ uuid + `\' \'author\'=\'Unnamed\'>
   <colors>
     [\n` + levec.join(",\n") + `\n]
   </colors>
@@ -60,7 +60,7 @@ function uchange() {
       getcolor('lowBouncematColor'),  //Low Bouncemat Color
       getcolor('diamondColor') //Diamond Color
     ];
-  strstart = `<level \'id\'=\'`+ uuid + `\' \'class\'=\'` + document.getElementById('username').value + `\'>
+  strstart = `<level \'id\'=\'`+ uuid + `\' \'author'\'=\'` + document.getElementById('username').value + `\'>
   <colors>
 [\n` + levec.join(",\n").trimRight(2) + `\n]
   </colors>
@@ -81,7 +81,7 @@ function uchange() {
       getcolor('lowBouncematColor'),  //Low Bouncemat Color
       getcolor('diamondColor') //Diamond Color
     ];
-   strstart = `<level \'id\'=\'`+ uuid + `\' \'class\'=\'` + 'Unnamed' + `\'>
+   strstart = `<level \'id\'=\'`+ uuid + `\' \'author\'=\'` + 'Unnamed' + `\'>
   <colors>
 [\n` + levec.join(",\n").trimRight(2) + `\n]
   </colors>
