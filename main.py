@@ -99,7 +99,12 @@ def searchlevel():
 def play2():
   if (not request.method == 'GET'):
     uuid = request.form['uuids']
-    return render_template('play2.html', uuid=uuid)
+    tree = ET.parse('frontend/public.xml')
+    root = tree.getroot()
+    for level in root.findall('level'):
+      if (level.attrib['id'] == uuid):
+        author = level.attrib['author']
+    return render_template('play2.html', uuid=uuid, author=author)
 
 @app.route('/search',  methods=['GET', 'POST'])
 def search():
