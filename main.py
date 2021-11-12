@@ -101,6 +101,7 @@ def play2():
     uuid = request.form['uuids']
     tree = ET.parse('frontend/public.xml')
     root = tree.getroot()
+    author = 'Unknown'
     for level in root.findall('level'):
       if (level.attrib['id'] == uuid):
         author = level.attrib['author']
