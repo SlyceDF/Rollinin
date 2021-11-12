@@ -12,8 +12,16 @@
       {
         "id": "4130b54d-5b2a-45d6-b7b8-886638283e8e",
         "line": 1373,
-        "version": 1084,
-        "index": 30902
+        "version": 1196,
+        "index": 30966
+      }
+    ],
+    "frontend/keepalive.js": [
+      {
+        "id": "ca31890a-cd0a-486e-b9f6-8eea67c7e662",
+        "line": 1,
+        "version": 1,
+        "index": 0
       }
     ],
     "frontend/maind.js": [
@@ -28,8 +36,8 @@
       {
         "id": "e558859c-eb57-4535-a0f6-39a2f3d22796",
         "line": 35,
-        "version": 212,
-        "index": 877
+        "version": 217,
+        "index": 903
       }
     ]
   }
