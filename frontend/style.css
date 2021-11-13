@@ -128,19 +128,20 @@ canvas {
   font-size: 6vw;
 }
 .button{
-  position: fixed;
-  background-color: #e0e0e0;
-  color: #616161;
-  font-family: FreeSans;
-  font-weight: 700; 
+  position: fixed !important;
+  background-color: #e0e0e0 !important;
+  color: #616161 !important;
+  font-family: FreeSans !important;
+  font-weight: 700 !important; 
   font-size: 70px;
-  border-radius: 10px;
+  border-radius: 10px !important;
+  border: none !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center !important;
+  justify-content: center !important;
 }
 .button:hover{
-  background-color: #bdbdbd;
+  background-color: #bdbdbd !important;
 }
 #score{
   position: fixed;

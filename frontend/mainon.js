@@ -991,7 +991,39 @@ function jumper() {
     20
     );
 };
-
+function jumpe() {
+      world.forEach(v => {
+				if (v instanceof MatBouncer && ball.landed) 
+        {
+					if (v.detect()) {
+						ball.landed = false;
+						ball.speed.y = 0.5;
+						ball.tmpZ = ball.mesh.position.z;
+						v.mesh.position.y = 1;
+						let audio = new Audio('frontend/4.mp3');
+						audio.play();
+						ball.last = 2;
+					}
+				}
+			});
+      world.forEach(v => {
+				if (v instanceof MatsBouncer && ball.landed) 
+        {
+					if (v.detect()) {
+						ball.landed = false;
+						ball.speed.y = 0.39;
+						ball.tmpZ = ball.mesh.position.z;
+						v.mesh.position.y = 0.5;
+						let audio = new Audio('frontend/5.mp3');
+						audio.play();
+						ball.last = 4;
+					}
+				}
+			});
+};
+$('#canvascontainer').on('click touchstart', function(){
+  jumpe();
+})
 jumper();
 
 function jumpon() {

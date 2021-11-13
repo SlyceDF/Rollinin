@@ -1,3 +1,40 @@
+  function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+function getXMLToArray(xmlDoc){
+  var thisArray = new Array();
+  //Check XML doc
+  if($(xmlDoc).children().length > 0){
+    //Foreach Node found
+    $(xmlDoc).children().each(function(){
+      if($(xmlDoc).find(this.nodeName).children().length > 0){
+        //If it has children recursively get the inner array
+        var NextNode = $(xmlDoc).find(this.nodeName);
+        thisArray[this.nodeName] = getXMLToArray(NextNode);
+      } else {
+        //If not then store the next value to the current array
+        thisArray[this.nodeName] = [];
+        try {
+        $(xmlDoc).children(this.nodeName).each(function(){
+          thisArray[this.nodeName].push(eval($(this).text()));
+        });} catch (error) {
+            $(xmlDoc).children(this.nodeName).each(function(){
+          thisArray[this.nodeName].push($(this).text());
+        });
+        }
+      }
+    });
+  }
+  return thisArray;
+  }
+
+ var xmlDoc = httpGet('frontend/public.xml')
+
 function uuidv4() {
   return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
     (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
@@ -37,14 +74,13 @@ let uuid = uuidv4();
 
 const grid = $('#grid');
 
-let strstart = `<level \'id\'=\'`+ uuid + `\' \'author\'=\'Unnamed\'>
+let strstart = `<level id=\'`+ uuid + `\' author=\'Unnamed\'>
   <colors>
     [\n` + levec.join(",\n") + `\n]
   </colors>
   <layout>
     [
 `;
-
 function uchange() {
   if (document.getElementById('username').value != '') {
     levec = [
@@ -61,7 +97,7 @@ function uchange() {
       getcolor('lowBouncematColor'),  //Low Bouncemat Color
       getcolor('diamondColor') //Diamond Color
     ];
-  strstart = `<level \'id\'=\'`+ uuid + `\' \'author'\'=\'` + document.getElementById('username').value + `\'>
+  strstart = `<level id=\'`+ uuid + `\' author=\'` + document.getElementById('username').value + `\'>
   <colors>
 [\n` + levec.join(",\n").trimRight(2) + `\n]
   </colors>
@@ -82,7 +118,7 @@ function uchange() {
       getcolor('lowBouncematColor'),  //Low Bouncemat Color
       getcolor('diamondColor') //Diamond Color
     ];
-   strstart = `<level \'id\'=\'`+ uuid + `\' \'author\'=\'` + 'Unnamed' + `\'>
+   strstart = `<level id=\'`+ uuid + `\' author=\'` + 'Unnamed' + `\'>
   <colors>
 [\n` + levec.join(",\n").trimRight(2) + `\n]
   </colors>
@@ -217,3 +253,25 @@ xhr.send("{\"uuid\": \"" + uuid + "\", \"id\": " + document.getElementById('id')
   },
   10000);
 };
+
+function importin() {
+var uuid = document.getElementById('importuuid').value
+var ldata = $.parseXML(xmlDoc).getElementById(uuid);
+
+var thisLevel = getXMLToArray($.parseXML('<?xml version="1.0" encoding="UTF-8"?><level>' + ldata.innerHTML + '</level>'))
+
+var importi = thisLevel['level']['colors'][0]
+
+document.getElementById('backgroundColor').value = importi[0]
+document.getElementById('ballColor').value = importi[1]
+document.getElementById('matColor').value = importi[2]
+document.getElementById('matOutline').value = importi[3]
+document.getElementById('invisibleMatOutline').value = importi[4]
+document.getElementById('highBouncerColor').value = importi[5]
+document.getElementById('lowBouncerColor').value = importi[6]
+document.getElementById('obstacleColor').value = importi[7]
+document.getElementById('obstacleOutline').value = importi[8]
+document.getElementById('highBouncematColor').value = importi[9]
+document.getElementById('lowBouncematColor').value = importi[10]
+document.getElementById('diamondColor').value = importi[11]
+}
