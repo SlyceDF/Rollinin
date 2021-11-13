@@ -6,8 +6,9 @@ function uuidv4() {
 
 function getcolor(color) {
   try {
-    if (eval(document.getElementById(color).value) < 0xffffff+1 && eval(document.getElementById(color).value) >= 0) {
-      return eval(document.getElementById(color).value);
+    var x1 = document.getElementById(color).value;
+ var x = eval(x1.replace("#", "0x"));
+    if (x <= 0xffffff && x >= 0) { return x;
     } else {
       return 0;
     };
