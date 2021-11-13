@@ -41,6 +41,7 @@ canvas {
   font-family: Comfortaa;
   font-weight: 300;
   text-align: right;
+  cursor: none;
 }
 #blist{
   margin-top: 1.5vw

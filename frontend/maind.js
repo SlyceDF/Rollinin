@@ -158,7 +158,7 @@ $('#add').on('touchstart mousedown', e => {
 $('#menu').on('touchstart mousedown', e => {
   e.preventDefault();
   e.handled = true;
-  window.location.href = "/onlineplay";
+  window.open('/onlineplay', '_blank');
 });
 
 $('#remove').on('touchstart mousedown', e => {
