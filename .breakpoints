@@ -27,17 +27,17 @@
     "frontend/maind.js": [
       {
         "id": "ee2df98b-5ad6-4537-b64d-6d5781584e0b",
-        "line": 218,
-        "version": 2896,
-        "index": 6749
+        "line": 277,
+        "version": 3365,
+        "index": 8866
       }
     ],
     "frontend/play2.html": [
       {
         "id": "e558859c-eb57-4535-a0f6-39a2f3d22796",
         "line": 36,
-        "version": 306,
-        "index": 935
+        "version": 314,
+        "index": 931
       }
     ]
   }
