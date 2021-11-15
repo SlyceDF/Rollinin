@@ -63,7 +63,7 @@ def postlevel():
     iw = request_data['id']
     username = request_data['username']
     password = request_data['password']
-    user = Profiles.query.order_by(Profiles.idd)[iw]
+    user = Profiles.query.get(iw)
     if (user.password == sha1(password.encode()).hexdigest() and user.username == username and isUUID(uuid)):
       tree = ET.parse('frontend/public.xml')
       root = tree.getroot()
@@ -126,7 +126,7 @@ def leveldel():
     iw = int(request.form['ids'])
     pword =request.form['passwords']
     uuid = request.form['uuids']
-    user = Profiles.query.order_by(Profiles.idd)[iw]
+    user = Profiles.query.get(iw)
     if (user.password == sha1(pword.encode()).hexdigest() and user.username == uname and isUUID(uuid)):
       tree = ET.parse('frontend/public.xml')
       root = tree.getroot()
@@ -149,7 +149,7 @@ def sd():
     request_data = request.get_json()
     diam = request_data['dmonds']
     iw = request_data['iw']
-    Profiles.query.order_by(Profiles.idd)[iw].update({'diamonds': diam})
+    Profiles.query.get(iw).update({'diamonds': diam})
     db.session.commit()
     return redirect()
   else:
@@ -182,7 +182,7 @@ def levelplay():
             uname = request.form['usernames']
             iw = int(request.form['ids'])
             pword = sha1(request.form['passwords'].encode()).hexdigest()
-            listquery = Profiles.query.order_by(Profiles.idd)[iw]
+            listquery = Profiles.query.get(iw)
             if (listquery.password == pword and listquery.username == uname and not   listquery.password == None):
               dia = listquery.diamonds
               max = listquery.maxpercent
@@ -197,7 +197,7 @@ def levelplay():
               uname = request.form['usernames']
               iw = int(request.form['ids'])
               pword = sha1(request.form['passwords'].encode()).hexdigest()
-              listquery = Profiles.query.order_by(Profiles.idd)[iw]
+              listquery = Profiles.query.get(iw)
               if (listquery.password == pword and listquery.username == uname):
                 db.session.delete(listquery)
                 db.session.commit()
@@ -225,7 +225,7 @@ def playad():
     diam = request_data['dmonds']
     iw = request_data['iw']
     try:
-      listquery = Profiles.query.order_by(Profiles.idd)[iw]
+      listquery = Profiles.query.get(iw)
       uname = listquery.username
       listquery.diamonds = diam
       db.session.commit()
@@ -240,7 +240,7 @@ def playadsave():
     diam = request_data['maxpercent']
     iw = request_data['iw']
     try:
-      listquery = Profiles.query.order_by(Profiles.idd)[iw]
+      listquery = Profiles.query.get(iw)
       uname = listquery.username
       listquery.maxpercent = diam
       db.session.commit()
