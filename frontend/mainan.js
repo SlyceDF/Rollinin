@@ -1279,33 +1279,8 @@ var render = function () {
 var reqId = requestAnimationFrame(render);
 
 //save diamonds
-
-function sd() {
-  var xhr = new XMLHttpRequest();
-xhr.open("POST", '/playad');
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.send("{\"dmonds\":\"[" + diam.toString() + "]\", \"iw\":" + iw.toString() + "}");
-for (let i = 0; i<=data.length; i++) {
-    diamsave[i] = diam[i];
-};
-for (let i = 0; i<=data.length; i++) {
-    diam[i] = diam[i];
-  }
-};
 function sdd() {
   diam[level] = undefined
-};
-function sp() {
-  var xhr = new XMLHttpRequest();
-xhr.open("POST", '/playadsave');
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.send("{\"maxpercent\":\"[" + maxpercent.toString() + "]\", \"iw\":" + iw.toString() + "}");
-for (let i = 0; i<=data.length; i++) {
-    maxpersave[i] = maxpercent[i];
-};
-for (let i = 0; i<=data.length; i++) {
-    maxpercent[i] = maxpercent[i];
-  }
 };
 function spd() {
   maxpercent[level] = undefined

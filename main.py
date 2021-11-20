@@ -60,7 +60,7 @@ def postlevel():
     uuid = request_data['uuid']
     layout = request_data['layout']
     colors = request_data['colors']
-    iw = request_data['id']
+    iw = request_data['id'] + 1
     username = request_data['username']
     password = request_data['password']
     user = Profiles.query.get(iw)
@@ -123,7 +123,7 @@ def search():
 def leveldel():
   if (not request.method == 'GET'):
     uname = request.form['usernames']
-    iw = int(request.form['ids'])
+    iw = int(request.form['ids']) + 1
     pword =request.form['passwords']
     uuid = request.form['uuids']
     user = Profiles.query.get(iw)
@@ -180,13 +180,13 @@ def levelplay():
         if (register == 0):
           try:
             uname = request.form['usernames']
-            iw = int(request.form['ids'])
+            iw = int(request.form['ids']) + 1
             pword = sha1(request.form['passwords'].encode()).hexdigest()
             listquery = Profiles.query.get(iw)
             if (listquery.password == pword and listquery.username == uname and not   listquery.password == None):
               dia = listquery.diamonds
               max = listquery.maxpercent
-              return render_template('lvl1.html', username=uname, idd=iw, diamonds=dia, maxpercent = max)
+              return render_template('lvl1.html', username=uname, idd=iw - 1, diamonds=dia, maxpercent = max)
             else:
               return redirect('/login', code=302)
           except:
@@ -195,7 +195,7 @@ def levelplay():
           if (register == 2):
             try:
               uname = request.form['usernames']
-              iw = int(request.form['ids'])
+              iw = int(request.form['ids']) + 1
               pword = sha1(request.form['passwords'].encode()).hexdigest()
               listquery = Profiles.query.get(iw)
               if (listquery.password == pword and listquery.username == uname):
@@ -223,14 +223,14 @@ def playad():
   if (request.method == 'POST'):
     request_data = request.get_json()
     diam = request_data['dmonds']
-    iw = request_data['iw']
+    iw = request_data['iw'] + 1
     try:
       listquery = Profiles.query.get(iw)
       uname = listquery.username
       listquery.diamonds = diam
       db.session.commit()
     except: pass
-    return render_template('lvl1.html', username=uname, idd=iw, diamonds=diam)
+    return render_template('lvl1.html', username=uname, idd=iw - 1, diamonds=diam)
   else:
     return redirect('/', code=302)
 @app.route('/playadsave', methods=['GET', 'POST'])
@@ -238,7 +238,7 @@ def playadsave():
   if (request.method == 'POST'):
     request_data = request.get_json()
     diam = request_data['maxpercent']
-    iw = request_data['iw']
+    iw = request_data['iw'] + 1
     try:
       listquery = Profiles.query.get(iw)
       uname = listquery.username
@@ -246,7 +246,7 @@ def playadsave():
       db.session.commit()
     except:
       pass
-    return render_template('lvl1.html', username=uname, idd=iw, maxpercent=diam)
+    return render_template('lvl1.html', username=uname, idd=iw - 1, maxpercent=diam)
   else:
     return redirect('/', code=302)
 
