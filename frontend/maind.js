@@ -82,7 +82,7 @@ let strstart = `<level id=\'`+ uuid + `\' author=\'Unnamed\'>
     [
 `;
 function uchange() {
-  if (document.getElementById('username').value != '') {
+  if (document.getElementById('id').value != '') {
     levec = [
       getcolor('backgroundColor'), //Background Color
       getcolor('ballColor'), //Ball Color
@@ -97,7 +97,7 @@ function uchange() {
       getcolor('lowBouncematColor'),  //Low Bouncemat Color
       getcolor('diamondColor') //Diamond Color
     ];
-  strstart = `<level id=\'`+ uuid + `\' author=\'` + document.getElementById('username').value + `\'>
+  strstart = `<level id=\'`+ uuid + `\' author=\'` + document.getElementById('id'').value + `\'>
   <colors>
 [\n` + levec.join(",\n").trimRight(2) + `\n]
   </colors>
@@ -242,7 +242,7 @@ function post() {
   var xhr = new XMLHttpRequest();
 xhr.open("POST", '/postlevel');
 xhr.setRequestHeader("Content-Type", "application/json");
-xhr.send("{\"uuid\": \"" + uuid + "\", \"id\": " + document.getElementById('id').value + ", \"username\": \"" + document.getElementById('username').value + "\", \"password\": \"" + document.getElementById('password').value + "\", \"colors\": " + ("\"[" + levec.join(", ")).trimRight(1) + "]\"" + ", \"layout\": " + ("\"[[" + data.map(i => i.join(", ")).join("], [")).trimRight(1) + "]]\"" + "}");
+xhr.send("{\"uuid\": \"" + uuid + "\", \"id\": " + document.getElementById('id').value + ", \"username\": \"" + document.getElementById('id').value + "\", \"password\": \"" + document.getElementById('password').value + "\", \"colors\": " + ("\"[" + levec.join(", ")).trimRight(1) + "]\"" + ", \"layout\": " + ("\"[[" + data.map(i => i.join(", ")).join("], [")).trimRight(1) + "]]\"" + "}");
   document.getElementById('error').innerHTML = 'Success! If your credentials were entered correctly, the level UUID is <b>' + uuid + '</b>';
   uuid = uuidv4();
 } else {

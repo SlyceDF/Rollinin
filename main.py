@@ -104,7 +104,10 @@ def play2():
     author = 'Unknown'
     for level in root.findall('level'):
       if (level.attrib['id'] == uuid):
-        author = level.attrib['author']
+        try:
+          author = Profiles.query.get(int(level.attrib['author'])+1).username
+        except: 
+          pass
     return render_template('play2.html', uuid=uuid, author=author)
 
 @app.route('/search',  methods=['GET', 'POST'])
