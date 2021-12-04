@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="frontend/style.css"/>
         <link rel="icon" type="image/x-icon" href="frontend/favicon.ico"/>
-    <title>Delete Account @SkyRoll</title>
+    <title>Change Password @SkyRoll</title>
 </head>
 <body id="mainmenu">
-        <form action='/play' method="POST" id="formmenu" autocomplete="off">
+        <form action='/changpp' method="POST" id="formmenu" autocomplete="off">
               <input class="bfw" type="text" id="iw" name="ids" placeholder="Enter ID">
               <input class="bfw" type="text" id="uname" name="usernames" placeholder="Enter Username">
                 <input class="bfw" type="password" id="pw" name="passwords" placeholder="Enter Password">
-            <button class="bfo" type="submit">Delete Account</button>
+                <input class="bfw" type="password" id="pw" name="nusernames" placeholder="New Password">
+            <button class="bfo" type="submit">Change Username</button>
           </form>
           <a class="bfo" href="/am">Back</a>
 </body>

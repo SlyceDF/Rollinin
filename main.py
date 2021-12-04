@@ -38,6 +38,25 @@ def isUUID(value):
     except ValueError:
         return False
 
+@app.route('/sid',  methods=['GET', 'POST'])
+def sid():
+  return render_template('sid.html')
+
+@app.route('/sidi',  methods=['GET', 'POST'])
+def sidi():
+  if (not request.method == 'GET'):
+    search = []
+    uname = request.form['usernames']
+    find = Profiles.query.order_by('idd')
+    for profile in find:
+        if (profile.username == uname):
+          search.append(profile.idd - 1)
+    return render_template('sidi.html', searchresults=search)
+
+@app.route('/am',  methods=['GET', 'POST'])
+def am():
+  return render_template('am.html')
+
 @app.route('/edit',  methods=['GET', 'POST'])
 def designer():
   return render_template('design.html')
@@ -122,6 +141,40 @@ def search():
           search.append(level.attrib['id'])
     return render_template('search.html', searchresults=search)
 
+@app.route('/changpp',  methods=['GET', 'POST'])
+def changpp():
+  if (not request.method == 'GET'):
+    uname = request.form['usernames']
+    iw = int(request.form['ids']) + 1
+    pword =request.form['passwords']
+    npword = request.form['npasswords']
+    user = Profiles.query.get(iw)
+    if (user.password == sha1(pword.encode()).hexdigest() and user.username == uname):
+      Profiles.query.get(iw).password = npword
+      db.session.commit()
+  return redirect('/changp', code=302)
+
+@app.route('/changp', methods=['POST','GET'])
+def changp():
+  return render_template('changp.html')
+
+@app.route('/changuu',  methods=['GET', 'POST'])
+def changuu():
+  if (not request.method == 'GET'):
+    uname = request.form['usernames']
+    iw = int(request.form['ids']) + 1
+    pword =request.form['passwords']
+    nuname = request.form['nusernames']
+    user = Profiles.query.get(iw)
+    if (user.password == sha1(pword.encode()).hexdigest() and user.username == uname):
+      Profiles.query.get(iw).username = nuname
+      db.session.commit()
+  return redirect('/changu', code=302)
+
+@app.route('/changu', methods=['POST','GET'])
+def changu():
+  return render_template('changu.html')
+
 @app.route('/leveldel',  methods=['GET', 'POST'])
 def leveldel():
   if (not request.method == 'GET'):
@@ -134,7 +187,7 @@ def leveldel():
       tree = ET.parse('frontend/public.xml')
       root = tree.getroot()
       for level in root.findall('level'):
-        if (level.attrib['id'] == uuid):
+        if (level.attrib['id'] == uuid and level.attrib['author'] == iw):
           root.remove(level)
       tree.write('frontend/public.xml')
   return redirect('/delevel', code=302)
@@ -146,7 +199,7 @@ def delac():
   register = 2
   return render_template('deleteacc.html', register=register)
 
-@app.route('/p',  methods=['GET', 'POST'])
+'''@app.route('/p',  methods=['GET', 'POST'])
 def sd():
   if (not request.method == 'GET'):
     request_data = request.get_json()
@@ -156,7 +209,7 @@ def sd():
     db.session.commit()
     return redirect()
   else:
-    return redirect('/', code=302)
+    return redirect('/', code=302)'''
 @app.route('/play',  methods=['GET', 'POST'])
 def levelplay():
   global register
