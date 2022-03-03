@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from threading import Thread
 from uuid0 import UUID
 import xml.etree.ElementTree as ET
+import logging
 
 app = Flask(  # Create a flask app
 	__name__,
@@ -79,7 +80,7 @@ def postlevel():
     uuid = request_data['uuid']
     layout = request_data['layout']
     colors = request_data['colors']
-    iw = request_data['id'] + 1
+    iw = int(request_data['id']) + 1
     username = request_data['username']
     password = request_data['password']
     user = Profiles.query.get(iw)
@@ -89,8 +90,8 @@ def postlevel():
       for level in root.findall('level'):
         if (level.attrib['id'] == uuid):
           x = level
-      if(x=='none'):
-        level = ET.SubElement(root, 'level', {'id': uuid, 'author': username})
+      if(x == 'none'):
+        level = ET.SubElement(root, 'level', {'id': uuid, 'author': str(iw - 1)})
         color = ET.SubElement(level, 'colors')
         color.text = colors   
         laydata = ET.SubElement(level, 'layout')
@@ -120,14 +121,16 @@ def play2():
     uuid = request.form['uuids']
     tree = ET.parse('frontend/public.xml')
     root = tree.getroot()
+    iw = '?'
     author = 'Unknown'
     for level in root.findall('level'):
       if (level.attrib['id'] == uuid):
         try:
-          author = Profiles.query.get(int(level.attrib['author'])+1).username
+          iw = level.attrib['author']
+          author = Profiles.query.get(int(iw)+1).username
         except: 
           pass
-    return render_template('play2.html', uuid=uuid, author=author)
+    return render_template('play2.html', uuid=uuid, author=author, iw = iw)
 
 @app.route('/search',  methods=['GET', 'POST'])
 def search():
@@ -187,7 +190,7 @@ def leveldel():
       tree = ET.parse('frontend/public.xml')
       root = tree.getroot()
       for level in root.findall('level'):
-        if (level.attrib['id'] == uuid and level.attrib['author'] == iw):
+        if (level.attrib['id'] == uuid and int(level.attrib['author']) == iw - 1):
           root.remove(level)
       tree.write('frontend/public.xml')
   return redirect('/delevel', code=302)
