@@ -207,37 +207,37 @@ class Ball {
 			}
 			world.forEach(v => {
 				if (v instanceof Mat && this.landed) {
-					if (v.detect()) {
-						this.last = 1;
-					}
+					//if (v.detect()) {
+						//this.last = 1;
+					//}
 				}
 			});
 			world.forEach(v => {
 				if (v instanceof DelMat && this.landed) {
-					if (v.detect()) {
-						this.last = 5;
-					}
+					//if (v.detect()) {
+						//this.last = 5;
+					//}
 				}
 			});
 			world.forEach(v => {
 				if (v instanceof Obstacle && this.landed) {
-					if (v.detect()) {
-						this.last = 3;
-					}
+					//if (v.detect()) {
+						//this.last = 3;
+					//}
 				}
 			});
       world.forEach(v => {
 				if (v instanceof HighObstacle && this.landed) {
-					if (v.detect()) {
-						this.last = 6;
-					}
+					//if (v.detect()) {
+						//this.last = 6;
+					//}
 				}
 			});
             world.forEach(v => {
 				if (v instanceof HighlowObstacle && this.landed) {
-					if (v.detect()) {
+					//if (v.detect()) {
 						this.last = 7;
-					}
+					//}
 				}
 			});
 			world.forEach(v => {
@@ -263,7 +263,7 @@ class Ball {
             scene.remove(scene.getObjectByName('diamond'))};
             diama[level] = true;
             };
-            this.last = 10;
+            //this.last = 10;
 					}
 				}
       });
